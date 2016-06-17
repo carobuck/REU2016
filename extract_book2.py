@@ -19,7 +19,7 @@ def parsePrint(xmlBk,f):
 		count+=1
 		x = p.attrib['usemap'][:-5]  #get page name_# so can reference later
 		#print(x+'\t'+str(numDigits(p))+'\t'+str(punct(p))+'\t'+str(scaledWords(p,pages))+'\t'+str(numCookWords(p))+'\t'+str(numMeasureWords(p))+'\t'+str(pgLocation(count,pages))+'\t'+str(upperToTotalLetters(p)),file=f)
-		print(x+'\t'+str(numDigits(p))+'\t'+str(punct(p))+'\t'+str(scaledWords(p,pages))+'\t'+str(numCookWords(p))+'\t'+str(numMeasureWords(p))+'\t'+str(upperToTotalLetters(p)),file=f)
+		print(x+'\t'+str(numDigits(p))+'\t'+str(punct(p))+'\t'+str(scaledWords(p,pages))+'\t'+str(numCookWords(p))+'\t'+str(numMeasureWords(p))+'\t'+str(upperToTotalLetters(p))+'\t'+str(moreThan10(p)),file=f)
 		#print(x+'\t'+str(numDigits(p))+'\t'+str(punct(p))+'\t'+str(numCookWords(p))+'\t'+str(numMeasureWords(p))+'\t'+str(pgLocation(count,pages))+'\t'+str(upperToTotalLetters(p)),file=f)
 		#print(x+'\t'+str(punct(p))+'\t'+str(scaledWords(p,pages))+'\t'+str(numCookWords(p))+'\t'+str(numMeasureWords(p))+'\t'+str(pgLocation(count,pages))+'\t'+str(upperToTotalLetters(p)),file=f)
 
@@ -155,19 +155,36 @@ def upperToTotalLetters(page):
 		else:
 			return float(upperCase)/float(letter)
 
+#this function returns true (1) if there are at least 10 alphabetical words on a page, false (0) otherwise
+def moreThan10(page):
+	pg=page.findall(".//WORD")
+	if len(pg)==0: 
+		return 0 #blank page, return 0
+	else:
+		alphaWord=0
+		for tag in pg:
+			word=tag.text
+			if word.isalpha():
+				alphaWord+=1
+		if alphaWord>10:
+			return 1
+		else:
+			return 0	
+
+
 #for each line in book, want to print:
 # (bkname_page#	numDigits	punctuation	numWords )
 
 #OPEN ONE OUTPUT FILE FOR HOWEVER MANY BOOKS TO RUN THRU
-f=open('extract_500_books','w')
+f=open('extract_train_data','w')
 #FOR EACH BOOK, SEND XML AND f (FILE STREAM)
 
 path='xmlRecipesBooks'
-files=os.listdir(os.getcwd()+'/inex500')
+files=os.listdir(os.getcwd()+'/xmlRecipesBooks')
 #print(files)
 for file in files:
 	print(file)
-	parsePrint('inex500/'+file,f)
+	parsePrint('xmlRecipesBooks/'+file,f)
 #parsePrint('foodNewsletter.xml',f)
 #parsePrint('schoolfoodservic00mass_djvu.xml',f)
 #parsePrint('CAT31304297_djvu.xml',f)

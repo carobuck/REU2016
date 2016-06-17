@@ -1,6 +1,9 @@
 #program to combine training data (from file like proseVsOther) and features file of book (output of extract_book.py)
 from __future__ import print_function #need this to print to file
 
+non=0
+yes=0
+
 judgmentByPageId = {} #make a map/dict to store data and key
 with open('recipeVsWith1848') as f:
 	for line in f:
@@ -14,16 +17,21 @@ with open('recipeVsWith1848') as f:
 		judgment = arr[1]
 		if judgment=='0': #change 0's to -1 (what svm_learn wants)
 			judgment='-1'
+			non+=1
+		if judgment=='1':
+			yes+=1
+	
 		#[pageId, judgment] = line.split('\t') **single line of code to do same as above 3 lines
 		
 		#This line puts data in dict, creates line for pageId
 		judgmentByPageId[pageId] = judgment
-
+print(non)
+print(yes)
 #print(judgmentByPageId) this line prints the map/dict made above
 #print(judgmentByPageId['feasibilitystudy02mill_0218']) this line shows how to access value for given key in dict
 
-outf=open('MLfileRecipe4','w') #open file for machine learning output
-with open('extract_book_recipes4') as f:
+outf=open('MLfileRecipe_train','w') #open file for machine learning output
+with open('extract_train_data') as f:
 	for line in f:
 	 	#strip() gets rid of newlines (on right and left)
 		arr=line.strip().split('\t')

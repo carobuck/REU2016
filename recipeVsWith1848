@@ -2,10 +2,14 @@
 #is like proseVsOther.txt
 # 1=recipe; 0=NOT recipe
 
+treasurestatesch7172mont_0014	1
+treasurestatesch7172mont_0023	1
+treasurestatesch7172mont_0026	1
 treasurestatesch7172mont_0038	0
 treasurestatesch7172mont_0039	0
 treasurestatesch7172mont_0040	0
 treasurestatesch7172mont_0043	1
+treasurestatesch7172mont_0044	1
 treasurestatesch7172mont_0045	1
 treasurestatesch7172mont_0059	1
 treasurestatesch7172mont_0055	0
@@ -29,30 +33,43 @@ CAT31293900_0019	0
 CAT31293900_0027	1
 CAT31293900_0041	1
 CAT31293900_0040	0
+CAT31293900_0051	1
 CAT31293900_0053	1
+CAT31293900_0063	1
 CAT31293900_0073	1
+CAT31293900_0083	1
 CAT31293900_0085	1
+CAT31293900_0089	1
+
 schfoodservic7277mont_0004	1
 schfoodservic7277mont_0005	0
 schfoodservic7277mont_0008	0
 schfoodservic7277mont_0027	1
 schfoodservic7277mont_0024	0
 schfoodservic7277mont_0025	1
+schfoodservic7277mont_0026	1
 schfoodservic7277mont_0030	1
 schfoodservic7277mont_0044	0
 schfoodservic7277mont_0051	0
 schfoodservic7277mont_0066	1
 schfoodservic7277mont_0092	0
+schfoodservic7277mont_0093	1
+schfoodservic7277mont_0181	1
 
 #THESE ARE SIDEWAYS PAGES...wonder if that will make a difference?? (nope)
 CAT31303133_0009	0
 CAT31303133_0018	0
 CAT31303133_0031	0
 CAT31303133_0032	0
+CAT31303133_0044	1
 CAT31303133_0045	1
 CAT31303133_0053	1
 CAT31303133_0059	1
+CAT31303133_0069	1
 CAT31303133_0077	1
+CAT31303133_0081	1
+CAT31303133_0099	1
+CAT31303133_0107	1
 
 CAT81760442_0033	0
 CAT81760442_0046	0
@@ -60,9 +77,15 @@ CAT81760442_0010	0
 
 skilfulhousewife00unse_0019	0
 skilfulhousewife00unse_0020	0
+skilfulhousewife00unse_0027	1
 skilfulhousewife00unse_0032	1
+skilfulhousewife00unse_0035	1
 skilfulhousewife00unse_0046	1
+skilfulhousewife00unse_0050	1
 skilfulhousewife00unse_0068	1
+skilfulhousewife00unse_0105	1
+skilfulhousewife00unse_0128	0
+skilfulhousewife00unse_0131	0
 
 #NEW AS OF WED 6/15/16
 charityunitedmet00char_0005	0
@@ -80,7 +103,15 @@ ogilviesbookforc00unse_0019	0
 ogilviesbookforc00unse_0018	1
 ogilviesbookforc00unse_0029	1
 ogilviesbookforc00unse_0032	1
+ogilviesbookforc00unse_0034	1
 ogilviesbookforc00unse_0043	1
+ogilviesbookforc00unse_0049	1
+ogilviesbookforc00unse_0052	1
+ogilviesbookforc00unse_0053	1
+ogilviesbookforc00unse_0060	1
+ogilviesbookforc00unse_0065	1
+ogilviesbookforc00unse_0075	1
+ogilviesbookforc00unse_0082	1
 
 queens_0001	0
 queens_0003	0
@@ -107,6 +138,10 @@ recipes00comp_0043	1
 recipes00comp_0056	1
 recipes00comp_0062	1
 recipes00comp_0075	1
+recipes00comp_0126	1
+recipes00comp_0140	1
+recipes00comp_0146	1
+recipes00comp_0147	1
 
 newyorkworldsfai00gaig_0011	0
 newyorkworldsfai00gaig_0013	0
@@ -132,6 +167,19 @@ eurocook00brow_0042	1
 eurocook00brow_0062	1
 eurocook00brow_0063	1
 eurocook00brow_0068	1
+eurocook00brow_0070	1
+eurocook00brow_0071	1
+eurocook00brow_0073	1
+eurocook00brow_0079	1
+eurocook00brow_0080	1
+eurocook00brow_0093	1
+eurocook00brow_0096	0
+eurocook00brow_0099	0
+eurocook00brow_0117	0
+eurocook00brow_0119	1
+eurocook00brow_0123	1
+eurocook00brow_0128	1
+eurocook00brow_0153	1
 
 panamacanalrevie1978pana_0019	0
 panamacanalrevie1978pana_0032	0
@@ -145,7 +193,11 @@ invalidsownbook00custgoog_0069	1
 
 khakikookbookcol00core_0010	0
 khakikookbookcol00core_0011	0
+khakikookbookcol00core_0016	0
+khakikookbookcol00core_0029	1
 khakikookbookcol00core_0034	1
+khakikookbookcol00core_0040	1
+khakikookbookcol00core_0065	1
 
 lakeforestcolleg33lake_0010	0
 lakeforestcolleg33lake_0013	0
@@ -174,16 +226,77 @@ filmtechniqueact00pudo_0030	0
 filmtechniqueact00pudo_0161	0
 filmtechniqueact00pudo_0130	0
 
+#NEW AS OF 6/17/16; these are false positives from 500
+
+extractsfromlett02mathiala_0435	0
+extractsfromlett02mathiala_0436	0
+
+foragecropsother00shawrich_0263	0
+
+yearincoalmine00husbrich_0195	0
+yorkbens00bensuoft_0001	0
+yorkbens00bensuoft_0005	0
+
+worksoffrancisbe103beauuoft_0379	0
+worksoffrancisbe103beauuoft_0384	0
+worksoffrancisbe103beauuoft_0385	0
+
+workscontaining01swifuoft_0518	0
+workscontaining01swifuoft_0520	0
+workscontaining01swifuoft_0521	0
+workscontaining01swifuoft_0538	0
 
 
+wisonsinstatelibr07durrrich_0006	0
+wisonsinstatelibr07durrrich_0658	0
+wisonsinstatelibr07durrrich_0659	0
 
+woodrowwilsonasi00tumurich_0236	0
 
+ordinarypeople00rossrich_0105	0
+ordinarypeople00rossrich_0109	0
+ordinarypeople00rossrich_0111	0
+ordinarypeople00rossrich_0115	0
+ordinarypeople00rossrich_0117	0
 
+goodroadsyearboo02washrich_0378	0
+goodroadsyearboo02washrich_0441	0
+goodroadsyearboo02washrich_0442	0
+goodroadsyearboo02washrich_0446	0
+goodroadsyearboo02washrich_0450	0
+goodroadsyearboo02washrich_0451	0
 
+gaseousfuelinclu00thwarich_0046	0
+gaseousfuelinclu00thwarich_0049	0
+gaseousfuelinclu00thwarich_0054	0
+gaseousfuelinclu00thwarich_0087	0
 
+geniuspotter00pottiala_0466	0
+geniuspotter00pottiala_0467	0
 
+fundamentalsinme00kenniala_0209	0
+fundamentalsinme00kenniala_0210	0
+fundamentalsinme00kenniala_0215	0
 
+gardenspastprese00davirich_0268	0
 
+freemasonryinhol00morriala_0265	0
+freemasonryinhol00morriala_0524	0
 
+friendlyyear00vandiala_0218	0
+
+foregoneconclusi00howerich_0279	0
+
+formallogicorthe00demouoft_0018	0
+formallogicorthe00demouoft_0019	0
+formallogicorthe00demouoft_0112	0
+
+favoriterhymesof00newyiala_0071	0
+favoriterhymesof00newyiala_0087	0
+favoriterhymesof00newyiala_0120	0
+favoriterhymesof00newyiala_0133	0
+
+#new recipes as of 6/17/16 (more from prev cookbooks)
+#added in above with its friends/matching book :)
 
 

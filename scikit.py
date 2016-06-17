@@ -23,9 +23,9 @@ from sklearn.multiclass import OneVsRestClassifier
 
 #%matplotlib inline
 
-X_train, y_train=load_svmlight_file("MLfileRecipe4")
+X_train, y_train=load_svmlight_file("MLfileRecipe_train")
 names = []
-with open('MLfileRecipe4') as f:
+with open('MLfileRecipe_train') as f:
 	for line in f:
 		if '#' in line:
 			pos = line.index('#')
@@ -38,11 +38,12 @@ kernel='rbf'
 g=1 #gamma; how "fast it falls off"/how smooth distiction is between groups
 
 #Define the parameter grid ; give poss values of C and gamma (parameters to search over to see what best)
-#param_grid = [{'C': [0.01,0.1,1, 10, 100], 'kernel': ['rbf'],'gamma': [0.1,1,10,100]}]
+param_grid = [{'C': [0.01,0.1,1, 10, 100], 'kernel': ['rbf'],'gamma': [0.1,1,10,100]}]
 
+#OTHER param_grids FOR OTHER LEARNING ALG
 #param_grid = [{'kernel': ['rbf'],'gamma': [0.1,1,10,100]}] #use for svm.NuSVC
 #param_grid = [{'C': [0.01,0.1,1, 10, 100], 'kernel': ['rbf'],'gamma': [0.1,1,10,100]}] #use for svm.SVR
-param_grid = [{'C': [0.01,0.1,1, 10, 100]}]
+#param_grid = [{'C': [0.01,0.1,1, 10, 100]}]
 
 
 #Create a learning set/test set split
@@ -51,12 +52,12 @@ Xlearn,Xtest,Ylearn,Ytest,names_learn,names_test = cross_validation.train_test_s
 
 #Do search for optimal parameters using 
 #5-fold cross validation on the learning set
-#clf = GridSearchCV(svm.SVC(C=1, probability=True), param_grid, cv=5)
+clf = GridSearchCV(svm.SVC(C=1, probability=True), param_grid, cv=5)
 
 #try other alg for svm
 #clf = GridSearchCV(svm.NuSVC(nu=.5, probability=True), param_grid, cv=5)
 #clf = GridSearchCV(svm.SVR(degree=3), param_grid, cv=5)
-clf = GridSearchCV(svm.LinearSVR(C=1), param_grid, cv=5)
+#clf = GridSearchCV(svm.LinearSVR(C=1), param_grid, cv=5)
 
 
 
@@ -74,7 +75,7 @@ Yhat=clf.predict(Xtest) #expected outcomes, using the model
 Yd=clf.decision_function(Xtest) #changed Xtest to Xlearn
 
 #try adding in function to score data points, to see how far off things are from being marked as recipe or not
-#score=clf.predict_proba(Xtest) ***************
+score=clf.predict_proba(Xtest) 
 #print(score)
 
 
@@ -92,7 +93,7 @@ for i in range(len(names_test)):
 	if Ytest[i] != Yhat[i]: #TRY ALSO WITH Yd??? #CHANGED TO yLEARN FROM YTEST
 		sumWrong+=1
 		print(names_test[i])
-		#***************print(score[i]) #print info about misses (scores and feature values)
+		print(score[i]) #print info about misses (scores and feature values)
 		print(Xtest[i])
 print(sumWrong,float(sumWrong)/float(len(names_test))) #CHANGED NAMES_TEST TO NAMES_LEARN
 
@@ -107,29 +108,30 @@ print(sumWrong,float(sumWrong)/float(len(names_test))) #CHANGED NAMES_TEST TO NA
 #			print(Xtest[i])
 
 #NOW TRY TO USE MODEL TO PREDICT/IDENTIFY RECIPES IN RANDOM BOOKS
-import pickle 	
-model=pickle.dumps(clf) 	#Store learned model
-clf2=pickle.loads(model)	#load learned model in 2nd classifier
-bk500X,ytrash=load_svmlight_file('MLfile500')
+#import pickle 	
+#model=pickle.dumps(clf) 	#Store learned model
+#clf2=pickle.loads(model)	#load learned model in 2nd classifier
+#bk500X,ytrash=load_svmlight_file('MLfile500')
 #print(bk500X,ytrash)
-predict500=clf2.predict(bk500X)
+#predict500=clf2.predict(bk500X)
 
-names500 = []
-with open('MLfile500') as f:
-	for line in f:
-		if '#' in line:
-			pos = line.index('#')
-			names500 += [line[pos:]]
-recipes=0
-for i in range(len(predict500)):
-	if predict500[i]==1:
-		print(predict500[i])
-		print(names500[i])
-		recipes+=1
-print(recipes)
+#names500 = []
+#with open('MLfile500') as f:
+#	for line in f:
+#		if '#' in line:
+#			pos = line.index('#')
+#			names500 += [line[pos:]]
+#recipes=0
+#for i in range(len(predict500)):
+#	if predict500[i]==1:
+#		#print(predict500[i])
+#		print(names500[i]+'\t'+'0')
+#		recipes+=1
+#print(recipes)
 
-print(len(predict500))
-#Plot precision-recall curve
+#print(len(predict500))
+
+#Plot precision-recall curve (THIS IS PLOT OF TEST DATA; WHAT USED TO TRAIN MACHINE)
 plt.clf()
 plt.plot(recall[0],precision[0],label='Precision-Recall curve')
 plt.xlabel('Recall')
