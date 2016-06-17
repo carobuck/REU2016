@@ -1,0 +1,189 @@
+#handmade file for scanned recipes vs other stuff
+#is like proseVsOther.txt
+# 1=recipe; 0=NOT recipe
+
+treasurestatesch7172mont_0038	0
+treasurestatesch7172mont_0039	0
+treasurestatesch7172mont_0040	0
+treasurestatesch7172mont_0043	1
+treasurestatesch7172mont_0045	1
+treasurestatesch7172mont_0059	1
+treasurestatesch7172mont_0055	0
+treasurestatesch7172mont_0071	0
+treasurestatesch7172mont_0076	0
+treasurestatesch7172mont_0080	0
+treasurestatesch7172mont_0086	1
+treasurestatesch7172mont_0101	1
+treasurestatesch7172mont_0109	0
+treasurestatesch7172mont_0101	1
+treasurestatesch7172mont_0119	1
+schoolfoodservic00mass_0011	0
+schoolfoodservic00mass_0015	0
+CAT31304297_0015	0
+CAT31304297_0020	0
+CAT31304297_0007	0
+
+CAT31293900_0017	0
+CAT31293900_0013	0
+CAT31293900_0019	0
+CAT31293900_0027	1
+CAT31293900_0041	1
+CAT31293900_0040	0
+CAT31293900_0053	1
+CAT31293900_0073	1
+CAT31293900_0085	1
+schfoodservic7277mont_0004	1
+schfoodservic7277mont_0005	0
+schfoodservic7277mont_0008	0
+schfoodservic7277mont_0027	1
+schfoodservic7277mont_0024	0
+schfoodservic7277mont_0025	1
+schfoodservic7277mont_0030	1
+schfoodservic7277mont_0044	0
+schfoodservic7277mont_0051	0
+schfoodservic7277mont_0066	1
+schfoodservic7277mont_0092	0
+
+#THESE ARE SIDEWAYS PAGES...wonder if that will make a difference?? (nope)
+CAT31303133_0009	0
+CAT31303133_0018	0
+CAT31303133_0031	0
+CAT31303133_0032	0
+CAT31303133_0045	1
+CAT31303133_0053	1
+CAT31303133_0059	1
+CAT31303133_0077	1
+
+CAT81760442_0033	0
+CAT81760442_0046	0
+CAT81760442_0010	0
+
+skilfulhousewife00unse_0019	0
+skilfulhousewife00unse_0020	0
+skilfulhousewife00unse_0032	1
+skilfulhousewife00unse_0046	1
+skilfulhousewife00unse_0068	1
+
+#NEW AS OF WED 6/15/16
+charityunitedmet00char_0005	0
+charityunitedmet00char_0011	1
+charityunitedmet00char_0012	1
+charityunitedmet00char_0016	1
+charityunitedmet00char_0025	1
+charityunitedmet00char_0026	1
+
+ogilviesbookforc00unse_0006	0
+ogilviesbookforc00unse_0008	0
+ogilviesbookforc00unse_0011	0
+ogilviesbookforc00unse_0014	0
+ogilviesbookforc00unse_0019	0
+ogilviesbookforc00unse_0018	1
+ogilviesbookforc00unse_0029	1
+ogilviesbookforc00unse_0032	1
+ogilviesbookforc00unse_0043	1
+
+queens_0001	0
+queens_0003	0
+queens_0006	1
+queens_0007	1
+queens_0010	1
+queens_0013	1
+queens_0018	1
+queens_0030	1
+queens_0033	1
+queens_0038	1
+queens_0052	1
+queens_0057	0
+queens_0058	0
+
+recipes00comp_0021	1
+recipes00comp_0023	1
+recipes00comp_0025	1
+recipes00comp_0024	1
+recipes00comp_0026	1
+recipes00comp_0039	1
+recipes00comp_0040	1
+recipes00comp_0043	1
+recipes00comp_0056	1
+recipes00comp_0062	1
+recipes00comp_0075	1
+
+newyorkworldsfai00gaig_0011	0
+newyorkworldsfai00gaig_0013	0
+newyorkworldsfai00gaig_0023	1
+newyorkworldsfai00gaig_0024	1
+newyorkworldsfai00gaig_0028	1
+newyorkworldsfai00gaig_0030	1
+newyorkworldsfai00gaig_0032	1
+newyorkworldsfai00gaig_0036	1
+newyorkworldsfai00gaig_0037	1
+newyorkworldsfai00gaig_0044	1
+newyorkworldsfai00gaig_0053	1
+newyorkworldsfai00gaig_0069	1
+newyorkworldsfai00gaig_0073	1
+
+eurocook00brow_0016	0
+eurocook00brow_0017	0
+eurocook00brow_0025	0
+eurocook00brow_0027	1
+eurocook00brow_0031	1
+eurocook00brow_0033	1
+eurocook00brow_0042	1
+eurocook00brow_0062	1
+eurocook00brow_0063	1
+eurocook00brow_0068	1
+
+panamacanalrevie1978pana_0019	0
+panamacanalrevie1978pana_0032	0
+panamacanalrevie1978pana_0035	1
+panamacanalrevie1978pana_0037	1
+
+invalidsownbook00custgoog_0012	0
+invalidsownbook00custgoog_0013	0
+invalidsownbook00custgoog_0067	1
+invalidsownbook00custgoog_0069	1
+
+khakikookbookcol00core_0010	0
+khakikookbookcol00core_0011	0
+khakikookbookcol00core_0034	1
+
+lakeforestcolleg33lake_0010	0
+lakeforestcolleg33lake_0013	0
+lakeforestcolleg33lake_0025	0
+lakeforestcolleg33lake_0040	0
+lakeforestcolleg33lake_0042	0
+lakeforestcolleg33lake_0045	0
+lakeforestcolleg33lake_0047	0
+
+armorialfamilies02foxd_0017	0
+armorialfamilies02foxd_0374	0
+armorialfamilies02foxd_0378	0
+armorialfamilies02foxd_0401	0
+armorialfamilies02foxd_0415	0
+armorialfamilies02foxd_0422	0
+
+genealogyofbliss00blis_0009	0
+genealogyofbliss00blis_0010	0
+genealogyofbliss00blis_0011	0
+genealogyofbliss00blis_0019	0
+genealogyofbliss00blis_0026	0
+
+filmtechniqueact00pudo_0008	0
+filmtechniqueact00pudo_0023	0
+filmtechniqueact00pudo_0030	0
+filmtechniqueact00pudo_0161	0
+filmtechniqueact00pudo_0130	0
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,45 @@
+#text file with measurements/amounts
+
+#CONVERT EVERY SCANNED WORD TO LOWER CASE BEFORE TESTING THIS
+
+lb
+pound
+oz
+c
+cup
+tbsp
+tsp
+ounce
+bag
+box
+t
+teaspoon
+tablespoon
+pint
+pt
+qt
+quart
+g
+gram
+ml
+mililiter
+gal
+liter
+gallon
+kg
+kilogram
+dash
+pinch
+jigger
+drop
+gill
+peck
+spoonful
+size
+can
+measure
+quantity
+
+#incl these??
+large
+inch

@@ -1,0 +1,59 @@
+#handmade file for scanned recipes vs other stuff
+#is like proseVsOther.txt
+# 1=recipe; 0=NOT recipe
+
+treasurestatesch7172mont_0038	0
+treasurestatesch7172mont_0039	0
+treasurestatesch7172mont_0040	0
+treasurestatesch7172mont_0043	1
+treasurestatesch7172mont_0045	1
+treasurestatesch7172mont_0059	1
+treasurestatesch7172mont_0055	0
+treasurestatesch7172mont_0071	0
+treasurestatesch7172mont_0076	0
+treasurestatesch7172mont_0080	0
+treasurestatesch7172mont_0086	1
+treasurestatesch7172mont_0101	1
+treasurestatesch7172mont_0109	0
+treasurestatesch7172mont_0101	1
+treasurestatesch7172mont_0119	1
+schoolfoodservic00mass_0011	0
+schoolfoodservic00mass_0015	0
+CAT31304297_0015	0
+CAT31304297_0020	0
+CAT31304297_0007	0
+
+CAT31293900_0017	0
+CAT31293900_0013	0
+CAT31293900_0019	0
+CAT31293900_0027	1
+CAT31293900_0041	1
+CAT31293900_0040	0
+CAT31293900_0053	1
+CAT31293900_0073	1
+CAT31293900_0085	1
+schfoodservic7277mont_0004	1
+schfoodservic7277mont_0005	0
+schfoodservic7277mont_0008	0
+schfoodservic7277mont_0027	1
+schfoodservic7277mont_0024	0
+schfoodservic7277mont_0025	1
+schfoodservic7277mont_0030	1
+schfoodservic7277mont_0044	0
+schfoodservic7277mont_0051	0
+schfoodservic7277mont_0066	1
+schfoodservic7277mont_0092	0
+
+#THESE ARE SIDEWAYS PAGES...wonder if that will make a difference??
+CAT31303133_0009	0
+CAT31303133_0018	0
+CAT31303133_0031	0
+CAT31303133_0032	0
+CAT31303133_0045	1
+CAT31303133_0053	1
+CAT31303133_0059	1
+CAT31303133_0077	1
+
+CAT81760442_0033	0
+CAT81760442_0046	0
+CAT81760442_0010	0
