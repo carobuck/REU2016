@@ -15,12 +15,13 @@ def parsePrint(xmlBk,f):
 	tree=ET.parse(xmlBk) #parse xml
 	pages=tree.findall(".//OBJECT") #store all the bk pages in list called 'pages' 
 	count=0 #count number of iterations of for loop
-	
+	avgP=avgPunc(pages)
+	avgW=avgWord(pages)
 	for p in pages:
 		count+=1
 		x = p.attrib['usemap'][:-5]  #get page name_# so can reference later
 		#print(x+'\t'+str(numDigits(p))+'\t'+str(punct(p))+'\t'+str(scaledWords(p,pages))+'\t'+str(numCookWords(p))+'\t'+str(numMeasureWords(p))+'\t'+str(pgLocation(count,pages))+'\t'+str(upperToTotalLetters(p)),file=f)
-		print(x+'\t'+str(numDigits(p))+'\t'+str(scaledPunc(p,pages))+'\t'+str(scaledWords(p,pages))+'\t'+str(numCookWords(p))+'\t'+str(numMeasureWords(p))+'\t'+str(upperToTotalLetters(p))+'\t'+str(moreThan10(p)),file=f)
+		print(x+'\t'+str(numDigits(p))+'\t'+str(scaledPunc(p,avgP))+'\t'+str(scaledWords(p,avgW))+'\t'+str(numCookWords(p))+'\t'+str(numMeasureWords(p))+'\t'+str(upperToTotalLetters(p))+'\t'+str(moreThan10(p)),file=f)
 		#print(x+'\t'+str(numDigits(p))+'\t'+str(punct(p))+'\t'+str(numCookWords(p))+'\t'+str(numMeasureWords(p))+'\t'+str(pgLocation(count,pages))+'\t'+str(upperToTotalLetters(p)),file=f)
 		#print(x+'\t'+str(punct(p))+'\t'+str(scaledWords(p,pages))+'\t'+str(numCookWords(p))+'\t'+str(numMeasureWords(p))+'\t'+str(pgLocation(count,pages))+'\t'+str(upperToTotalLetters(p)),file=f)
 
@@ -70,9 +71,8 @@ def avgPunc(book):
 	return float(sumPunc)/len(book)
 
 #returns scaled proportion of punct to words (scaled to average punctuation for whole book)
-def scaledPunc(page,book):
+def scaledPunc(page,avg):
 	thisPg=punct(page)
-	avg=avgPunc(book)
 	return(thisPg-avg)/avg
 
 #returns # of words on a page
@@ -90,9 +90,8 @@ def avgWord(book):
 	return float(Sum)/len(book)
 
 #returns scaled # of words on page (-1 indicate blank page; closer to 0 indicate closer to average # of words on page)
-def scaledWords(page, book):
+def scaledWords(page,avg):
 	thisPg=numWords(page)
-	avg=avgWord(book)
 	return (thisPg-avg)/avg
 
 #function to count proportion of cooking words on a page

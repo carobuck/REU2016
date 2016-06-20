@@ -34,3 +34,37 @@ def moreThan10(page):
 
 for p in pages:
 	moreThan10(p)
+
+
+
+#returns proportion of punctuation to words on a single page
+def punct(page):
+	punc=0
+	pg=page.findall(".//WORD")
+	if len(pg)==0:
+		return 0 
+	else:
+		for i in range(len(pg)):
+			for c in pg[i].text:
+				if c in string.punctuation:
+					punc+=1
+		return float(punc)/len(pg)
+
+#returns average proportion of punctuation to words on page for whole book
+def avgPunc(book):
+	sumPunc=0
+	for p in book:
+		sumPunc+=punct(p)
+	return float(sumPunc)/len(book)
+
+#returns scaled proportion of punct to words (scaled to average punctuation for whole book)
+def scaledPunc(page,avg):
+	thisPg=punct(page)
+	#avg=avgPunc(book)
+	return(thisPg-avg)/avg
+
+
+print("posidfjsadklf")
+avgP=avgPunc(pages)
+for p in pages:
+	print(scaledPunc(p,avgP))
