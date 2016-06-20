@@ -15,11 +15,12 @@ def parsePrint(xmlBk,f):
 	tree=ET.parse(xmlBk) #parse xml
 	pages=tree.findall(".//OBJECT") #store all the bk pages in list called 'pages' 
 	count=0 #count number of iterations of for loop
+	
 	for p in pages:
 		count+=1
 		x = p.attrib['usemap'][:-5]  #get page name_# so can reference later
 		#print(x+'\t'+str(numDigits(p))+'\t'+str(punct(p))+'\t'+str(scaledWords(p,pages))+'\t'+str(numCookWords(p))+'\t'+str(numMeasureWords(p))+'\t'+str(pgLocation(count,pages))+'\t'+str(upperToTotalLetters(p)),file=f)
-		print(x+'\t'+str(numDigits(p))+'\t'+str(punct(p))+'\t'+str(scaledWords(p,pages))+'\t'+str(numCookWords(p))+'\t'+str(numMeasureWords(p))+'\t'+str(upperToTotalLetters(p))+'\t'+str(moreThan10(p)),file=f)
+		print(x+'\t'+str(numDigits(p))+'\t'+str(scaledPunc(p,pages))+'\t'+str(scaledWords(p,pages))+'\t'+str(numCookWords(p))+'\t'+str(numMeasureWords(p))+'\t'+str(upperToTotalLetters(p))+'\t'+str(moreThan10(p)),file=f)
 		#print(x+'\t'+str(numDigits(p))+'\t'+str(punct(p))+'\t'+str(numCookWords(p))+'\t'+str(numMeasureWords(p))+'\t'+str(pgLocation(count,pages))+'\t'+str(upperToTotalLetters(p)),file=f)
 		#print(x+'\t'+str(punct(p))+'\t'+str(scaledWords(p,pages))+'\t'+str(numCookWords(p))+'\t'+str(numMeasureWords(p))+'\t'+str(pgLocation(count,pages))+'\t'+str(upperToTotalLetters(p)),file=f)
 
@@ -48,18 +49,31 @@ def numDigits(page):
 					#print word
 		return float(digPunc)/len(pg) #return proportion of # digits to # words on pg
 
-#returns proportion of punctuation to words on a page
+#returns proportion of punctuation to words on a single page
 def punct(page):
 	punc=0
 	pg=page.findall(".//WORD")
 	if len(pg)==0:
-		return 0 #MAYBE CHANGE LATER FOR HOW TO DEAL WITH BLANK PAGES??
+		return 0 
 	else:
 		for i in range(len(pg)):
 			for c in pg[i].text:
 				if c in string.punctuation:
 					punc+=1
 		return float(punc)/len(pg)
+
+#returns average proportion of punctuation to words on page for whole book
+def avgPunc(book):
+	sumPunc=0
+	for p in book:
+		sumPunc+=punct(p)
+	return float(sumPunc)/len(book)
+
+#returns scaled proportion of punct to words (scaled to average punctuation for whole book)
+def scaledPunc(page,book):
+	thisPg=punct(page)
+	avg=avgPunc(book)
+	return(thisPg-avg)/avg
 
 #returns # of words on a page
 #used in scaledWords (actual feature function)
@@ -195,3 +209,5 @@ for file in files:
 #parsePrint('skilfulhousewife00unse_djvu.xml',f)
 #CLOSE OUTPUT FILE AFTER RUN ALL THE BOOKS
 f.close()
+
+
