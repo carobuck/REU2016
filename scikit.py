@@ -58,7 +58,7 @@ Xlearn,Xtest,Ylearn,Ytest,names_learn,names_test = cross_validation.train_test_s
 #clf = GridSearchCV(svm.NuSVC(nu=.5, probability=True), param_grid, cv=5)
 #clf = GridSearchCV(svm.SVR(degree=3), param_grid, cv=5)
 clf = GridSearchCV(svm.LinearSVC(C=1), param_grid, cv=5)
-
+#^^FOUND LINEARSVC works best for my data right now...
 
 
 
@@ -70,9 +70,11 @@ clf.fit(Xlearn,Ylearn)
 print ("Optimal Parameters:", clf.best_params_)
 
 #make predictions using model
-Yhat=clf.predict(Xtest) #expected outcomes, using the model
-#Yhat=clf.predict(Xlearn) #see if it can predict the training ones right at all (if not, 3 features are currently garbage)
-Yd=clf.decision_function(Xtest) #changed Xtest to Xlearn
+#Yhat=clf.predict(Xtest) #expected outcomes, using the model
+Yhat=clf.predict(Xlearn) #see if it can predict the training ones right at all (if not, 3 features are currently garbage)
+Yd=clf.decision_function(Xlearn) #changed Xtest to Xlearn
+
+# decision_function is similar to predict_proba, but for LinearSVC (bigger # means comp more confident about it's prediction; closer to 0=less confident)
 
 #try adding in function to score data points, to see how far off things are from being marked as recipe or not
 #score=clf.predict_proba(Xtest) 
@@ -84,18 +86,19 @@ precision=dict()
 recall=dict()
 average_precision=dict()
 for i in range(2): #2 b/c have two target values (recipe or not)
-	precision[i], recall[i],_=precision_recall_curve(Ytest,Yd)    #CHANGED TO YLEARN FROM YTEST
-	average_precision[i]=average_precision_score(Ytest,Yd)
+	precision[i], recall[i],_=precision_recall_curve(Ylearn,Yd)    #CHANGED TO YLEARN FROM YTEST
+	average_precision[i]=average_precision_score(Ylearn,Yd)
 
 #try to print names of pages that were WRONGLY predicted
 sumWrong=0
-for i in range(len(names_test)):
-	if Ytest[i] != Yhat[i]: #TRY ALSO WITH Yd??? #CHANGED TO yLEARN FROM YTEST
+for i in range(len(names_learn)):
+	if Ylearn[i] != Yhat[i]: #TRY ALSO WITH Yd??? #CHANGED TO yLEARN FROM YTEST
 		sumWrong+=1
-		print(names_test[i])
+		print(names_learn[i])
+		print(Yd[i])
 		#print(score[i]) #print info about misses (scores and feature values)
-		print(Xtest[i])
-print(sumWrong,float(sumWrong)/float(len(names_test))) #CHANGED NAMES_TEST TO NAMES_LEARN
+		print(Xlearn[i])
+print(sumWrong,float(sumWrong)/float(len(names_learn))) #CHANGED NAMES_TEST TO NAMES_LEARN
 
 
 #print('\n'+'\n'+'poooop'+'\n')
@@ -144,7 +147,7 @@ plt.show()
 
 
 #report error rate
-Err=1-metrics.jaccard_similarity_score(Yhat,Ytest) #CHANGED YTEST TO YLEARN
+Err=1-metrics.jaccard_similarity_score(Yhat,Ylearn) #CHANGED YTEST TO YLEARN
 print("Training Error Rate is: %.4f"%(Err,))
 
 #other metrics to try: average_precision_score; precision_score; accuracy_score (used this in bootcamp)
