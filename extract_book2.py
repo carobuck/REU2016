@@ -6,24 +6,37 @@ from nltk.stem.snowball import SnowballStemmer #need to stem words for cookWords
 stemmer=SnowballStemmer("english") #set up stemmer
 import os
 from os import listdir #need for reading all files from folder
+import csv 
 
 #function to parse a book and print its features to a file
 #parameters: takes a XML book file; like in this form: 'foodNewsletter.xml'
 #and takes file name; if file DNE, will make file of that name
 #Will make new output file for each xml book (if give new output file name for each book)
-def parsePrint(xmlBk,f):
-	tree=ET.parse(xmlBk) #parse xml
-	pages=tree.findall(".//OBJECT") #store all the bk pages in list called 'pages' 
-	count=0 #count number of iterations of for loop
-	avgP=avgPunc(pages)
-	avgW=avgWord(pages)
-	for p in pages:
-		count+=1
-		x = p.attrib['usemap'][:-5]  #get page name_# so can reference later
-		#print(x+'\t'+str(numDigits(p))+'\t'+str(punct(p))+'\t'+str(scaledWords(p,pages))+'\t'+str(numCookWords(p))+'\t'+str(numMeasureWords(p))+'\t'+str(pgLocation(count,pages))+'\t'+str(upperToTotalLetters(p)),file=f)
-		print(x+'\t'+str(numDigits(p))+'\t'+str(scaledPunc(p,avgP))+'\t'+str(scaledWords(p,avgW))+'\t'+str(numCookWords(p))+'\t'+str(numMeasureWords(p))+'\t'+str(upperToTotalLetters(p))+'\t'+str(moreThan10(p)),file=f)
-		#print(x+'\t'+str(numDigits(p))+'\t'+str(punct(p))+'\t'+str(numCookWords(p))+'\t'+str(numMeasureWords(p))+'\t'+str(pgLocation(count,pages))+'\t'+str(upperToTotalLetters(p)),file=f)
-		#print(x+'\t'+str(punct(p))+'\t'+str(scaledWords(p,pages))+'\t'+str(numCookWords(p))+'\t'+str(numMeasureWords(p))+'\t'+str(pgLocation(count,pages))+'\t'+str(upperToTotalLetters(p)),file=f)
+def parsePrint(xmlBk,f,cookWords,measures,foods):
+	with open(xmlBk, 'rb') as xml_bk:
+		tree=ET.parse(xml_bk) #parse xml
+		pages=tree.findall(".//OBJECT") #store all the bk pages in list called 'pages' 
+		count=0 #count number of iterations of for loop
+		avgP=avgPunc(pages)
+		avgW=avgWord(pages)
+		for p in pages:
+			count+=1
+			x = p.attrib['usemap'][:-5]  #get page name_# so can reference later
+			features = [numDigits(p), 
+				scaledPunc(p,avgP),
+				scaledWords(p,avgW),
+				numCookWords(p,cookWords),
+				numMeasureWords(p,measures),
+				upperToTotalLetters(p),
+				moreThan10(p),
+				pgLocation(count,pages),
+				ingPhraser(p,foods,measures)
+				]; 
+			print(x+'\t'+'\t'.join([str(f) for f in features]),file=f)
+
+			#print(x+'\t'+str(numDigits(p))+'\t'+str(scaledPunc(p,avgP))+'\t'+str(scaledWords(p,avgW))+'\t'+str(numCookWords(p,cookWords))+'\t'+str(numMeasureWords(p,measures))+'\t'+str(upperToTotalLetters(p))+'\t'+str(moreThan10(p))+'\t'+str(pgLocation(count,pages))+'\t'+str(ingPhraser(p,foods,measures)),file=f)
+			#print(x+'\t'+str(numDigits(p))+'\t'+str(punct(p))+'\t'+str(numCookWords(p))+'\t'+str(numMeasureWords(p))+'\t'+str(pgLocation(count,pages))+'\t'+str(upperToTotalLetters(p)),file=f)
+			#print(x+'\t'+str(punct(p))+'\t'+str(scaledWords(p,pages))+'\t'+str(numCookWords(p))+'\t'+str(numMeasureWords(p))+'\t'+str(pgLocation(count,pages))+'\t'+str(upperToTotalLetters(p)),file=f)
 
 #counts # of digits and digits with punctuation
 def numDigits(page):
@@ -95,54 +108,38 @@ def scaledWords(page,avg):
 	return (thisPg-avg)/avg
 
 #function to count proportion of cooking words on a page
-def numCookWords(page):
+def numCookWords(page,cookWords):
 	pg=page.findall(".//WORD")
 	if len(pg)==0:
 			return 0 #blank page, return 0
 	else:
-		with open('cookingWords.txt') as f:
-			for line in f:
-				line=line.strip() #strip newlines/blanks at beg/end of line
-				if not line:
-					continue #skip blank lines in file
-				if line.startswith('#'):
-					continue #skip comments in file
-				cookWords=[line.rstrip('\n') for line in f]
-			cWord=0 #counter for cooking words
-			for tag in pg:
-				word=tag.text
-				if word.isalpha(): #test if word at least one char and all char alphabetic
-					word=word.casefold() #change to all lowercase for easier comparison; casefold() is more stringent than lower() and accounts for letters in other lang
-					word=stemmer.stem(word)
-					if word in cookWords:
-						cWord+=1
-						#print(word) #test to see if working
-			return float(cWord)/len(pg)
+		cWord=0 #counter for cooking words
+		for tag in pg:
+			word=tag.text
+			if word.isalpha(): #test if word at least one char and all char alphabetic
+				word=word.casefold() #change to all lowercase for easier comparison; casefold() is more stringent than lower() and accounts for letters in other lang
+				word=stemmer.stem(word)
+				if word in cookWords:
+					cWord+=1
+					#print(word) #test to see if working
+		return float(cWord)/len(pg)
 
 #function to count proportion of measurement words on a page 
-def numMeasureWords(page):
+def numMeasureWords(page,measures):
 	pg=page.findall(".//WORD")
 	if len(pg)==0:
 		return 0 #blank page, return 0
 	else:
-		with open('measurements.txt') as f:
-			for line in f:
-				line=line.strip()
-				if not line:
-					continue #skip blanks in file
-				if line.startswith('#'):
-					continue #skip comments in file
-				measures=[line.rstrip('\n') for line in f]
-			measureWord=0 #counter
-			for tag in pg:
-				word=tag.text
-				if not word.isdigit():
-					word=word.casefold()
-					word=stemmer.stem(word)
-					if word in measures:
-						measureWord+=1
-						#print(word) #testing
-			return float(measureWord)/len(pg)
+		measureWord=0 #counter
+		for tag in pg:
+			word=tag.text
+			if not word.isdigit():
+				word=word.casefold()
+				word=stemmer.stem(word)
+				if word in measures:
+					measureWord+=1
+					#print(word) #testing
+		return float(measureWord)/len(pg)
 
 #calculates where page is in relation to whole book; ranges (0,1] (in theory, if closer to 0 or 1, is less likely to be recipe)
 def pgLocation(loc,book):
@@ -184,20 +181,73 @@ def moreThan10(page):
 		else:
 			return 0	
 
+#returns # of 'ingredient phrases' on a page (# of lines that have both a food word and a measure word)
+#IS NOT PERFECT; TRY TO IMPROVE?? pulls up some directions, and misses some b/c ingredients not in set that I compare to
+def ingPhraser(page,foods,measures):
+	ingPhrase=0
+	lines=page.findall(".//LINE")
+	if len(lines)==0: #deal with blank page
+		return 0
+	for l in lines:
+		foodWord=False
+		unitWord=False
+		#phrase=''
+		words=l.findall(".//WORD")
+		size = len(words)
+		if size>=11:
+			continue
+		for tag in words:
+			#phrase+=tag.text+' '
+			x=tag.text
+			x.casefold()
+			if not foodWord and x in foods:
+				if x.isalpha():
+					if x not in measures:
+						foodWord=True
+			if not unitWord and x in measures:
+				unitWord=True
+		if foodWord and unitWord: #(10 or fewer words on a line)
+			ingPhrase+=1
+	return float(ingPhrase)/len(lines) #return proportion of ingPhrases/#lines on pg...
+	#^^^not perf; may bias towards recipes with fewer or more ingredients???
+
 
 #for each line in book, want to print:
 # (bkname_page#	numDigits	punctuation	numWords )
 
 #OPEN ONE OUTPUT FILE FOR HOWEVER MANY BOOKS TO RUN THRU
-f=open('extract_train_data','w')
-#FOR EACH BOOK, SEND XML AND f (FILE STREAM)
+f=open('extract_train_data4','w')
+#FOR EACH BOOK, SEND XML AND f (FILE STREAM) and 3 other files
 
-path='xmlRecipesBooks'
-files=os.listdir(os.getcwd()+'/xmlRecipesBooks')
+#open 3 other files once and then send to each of the books (faster/more efficient)
+with open('cookingWords.txt') as f1:
+	for line in f1:
+		line=line.strip() #strip newlines/blanks at beg/end of line
+		if not line:
+			continue #skip blank lines in file
+		if line.startswith('#'):
+			continue #skip comments in file
+		cookWords=set([line.rstrip('\n') for line in f1])
+with open('measurements.txt') as f2:
+	for line in f2:
+		line=line.strip()
+		if not line:
+			continue #skip blanks in file
+		if line.startswith('#'):
+			continue #skip comments in file
+		measures=set([line.rstrip('\n') for line in f2])
+with open('nyt-ingredients-snapshot-2015.csv') as csvfile:
+	reader=csv.DictReader(csvfile)
+	foods=set([])
+	for row in reader:
+		foods.add(row['name'])
+	foods=[element.lower() for element in foods] #lowercase everything
+
+files=os.listdir('/home/cbuck/xmlRecipesBooks')
 #print(files)
 for file in files:
 	print(file)
-	parsePrint('xmlRecipesBooks/'+file,f)
+	parsePrint('/home/cbuck/xmlRecipesBooks/'+file,f,cookWords,measures,foods)
 #parsePrint('foodNewsletter.xml',f)
 #parsePrint('schoolfoodservic00mass_djvu.xml',f)
 #parsePrint('CAT31304297_djvu.xml',f)
@@ -208,5 +258,6 @@ for file in files:
 #parsePrint('skilfulhousewife00unse_djvu.xml',f)
 #CLOSE OUTPUT FILE AFTER RUN ALL THE BOOKS
 f.close()
+
 
 

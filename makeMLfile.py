@@ -30,8 +30,8 @@ print(yes)
 #print(judgmentByPageId) this line prints the map/dict made above
 #print(judgmentByPageId['feasibilitystudy02mill_0218']) this line shows how to access value for given key in dict
 
-outf=open('MLfileRecipe_train2','w') #open file for machine learning output
-with open('extract_train_data') as f:
+outf=open('MLfileRecipe_train3','w') #open file for machine learning output
+with open('extract_train_data3') as f:
 	for line in f:
 	 	#strip() gets rid of newlines (on right and left)
 		arr=line.strip().split('\t')
