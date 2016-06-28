@@ -1,3 +1,6 @@
+#***RANDOM FOREST CLASSIFIER; says y/n with rand forest
+#harder to get 'ranked list' output for this; just weird quirk of way clf works...
+
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
@@ -36,8 +39,8 @@ Xlearn,Xtest,Ylearn,Ytest,names_learn,names_test = cross_validation.train_test_s
 #random state shuffles data so its random; then test_size takes off 25% to validate
 
 #Do search for optimal parameters using 
-#5-fold cross validation on the learning set
-clf=GridSearchCV(ensemble.RandomForestClassifier(),param_grid,cv=5)
+#5-fold cross validation on the learning set   ******IF WANT TO 'FIX' CLF, GIVE IT A SPECIFIC RANDOM STATE; w/out, it will randomly change each time it runs
+clf=GridSearchCV(ensemble.RandomForestClassifier(random_state=42),param_grid,cv=5)
 
 #fit the classifier
 clf.fit(Xlearn,Ylearn)
@@ -56,8 +59,8 @@ print(score)
 
 print('\n'+'\n'+'poooop'+'\n')
 
-confusion=confusion_matrix(Ytest,Yhat)
-print(confusion)
+#confusion=confusion_matrix(Ytest,Yhat)
+#print(confusion)
 
 #try to print names of pages that were WRONGLY predicted
 sumWrong=0
@@ -65,7 +68,7 @@ for i in range(len(names_test)):
 	if Ytest[i] != Yhat[i]: #TRY ALSO WITH Yd??? #CHANGED TO yLEARN FROM YTEST
 		sumWrong+=1
 		print(names_test[i])
-		print(Yd[i])
+		print(Yhat[i])
 		#print(score[i]) #print info about misses (scores and feature values)
 		#print(Xtest[i])
 print(sumWrong,float(sumWrong)/float(len(names_test))) #CHANGED NAMES_TEST TO NAMES_LEARN
@@ -83,15 +86,23 @@ print('\n'+'\n'+'poooop'+'\n')
 #			print(Xtest[i])
 
 #NOW TRY TO USE MODEL TO PREDICT/IDENTIFY RECIPES IN RANDOM BOOKS
-import pickle 	
-model=pickle.dumps(clf) 	#Store learned model
-clf2=pickle.loads(model)	#load learned model in 2nd classifier
-bk500X,ytrash=load_svmlight_file('MLfile500_2')
+#import pickle 	
+#model=pickle.dumps(clf) 	#Store learned model
+#clf2=pickle.loads(model)	#load learned model in 2nd classifier
+clf2 = clf #can just put in a different variable; don't need to pickle
+bk500X,ytrash=load_svmlight_file('MLfile500_3')
 #print(bk500X,ytrash)
 predict500=clf2.predict(bk500X)
+score=clf2.predict_proba(bk500X)
+print(score)
+percentRecipe=score[:,0]
 
+#for idx, [a,b] in enumerate(score):
+#	print(idx, a,b)
+
+#print(percentRecipe)
 names500 = []
-with open('MLfile500_2') as f:
+with open('MLfile500_3') as f:
 	for line in f:
 		if '#' in line:
 			pos = line.index('#')
@@ -100,7 +111,8 @@ recipes=0
 for i in range(len(predict500)):
 	if predict500[i]==1:
 		#print(predict500[i])
-		print(names500[i]+'\t'+'0')
+		print(names500[i])
+		#print(percentRecipe[i])
 		recipes+=1
 print(recipes)
 print(len(predict500))

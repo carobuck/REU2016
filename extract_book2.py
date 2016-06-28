@@ -182,41 +182,50 @@ def moreThan10(page):
 			return 0	
 
 #returns # of 'ingredient phrases' on a page (# of lines that have both a food word and a measure word)
-#IS NOT PERFECT; TRY TO IMPROVE?? pulls up some directions, and misses some b/c ingredients not in set that I compare to
+#MODIFY THIS SO CHECKS IF GET MEASURE+[OF]+FOOD WORD
+#modified so checks single word of foods
 def ingPhraser(page,foods,measures):
 	ingPhrase=0
 	lines=page.findall(".//LINE")
 	if len(lines)==0: #deal with blank page
 		return 0
 	for l in lines:
-		foodWord=False
 		unitWord=False
-		#phrase=''
+		of=False
+		#phrase=''  #use for debugging
 		words=l.findall(".//WORD")
-		size = len(words)
-		if size>=11:
-			continue
 		for tag in words:
-			#phrase+=tag.text+' '
+			#phrase+=tag.text+' '  #use for debugging
 			x=tag.text
-			x.casefold()
-			if not foodWord and x in foods:
-				if x.isalpha():
-					if x not in measures:
-						foodWord=True
-			if not unitWord and x in measures:
+			x.casefold() 
+			if unitWord and of:
+				x=stemmer.stem(x)
+				if x in foods: 
+					ingPhrase+=1 # have MEASURE + OF + FOOD phrase
+					#print(phrase) #debugging
+					break  #does this break out of the line??
+				else:
+					break #if next word isn't a food, want to break to next line
+			if unitWord:
+				x=stemmer.stem(x)
+				if x=='of':
+					of=True 
+					continue
+				elif x in foods:  
+					ingPhrase+=1 #have MEASURE + FOOD phrase
+					#print(phrase) #debugging
+					break
+				else:
+					break #if next word isn't 'of' or food, want to break to next line (this may be a bit harsh/restrictive??)
+			if x in measures:
 				unitWord=True
-		if foodWord and unitWord: #(10 or fewer words on a line)
-			ingPhrase+=1
-	return float(ingPhrase)/len(lines) #return proportion of ingPhrases/#lines on pg...
-	#^^^not perf; may bias towards recipes with fewer or more ingredients???
-
-
-#for each line in book, want to print:
-# (bkname_page#	numDigits	punctuation	numWords )
+				continue
+	#return(ingPhrase)
+	return float(ingPhrase)/len(lines)		
+	
 
 #OPEN ONE OUTPUT FILE FOR HOWEVER MANY BOOKS TO RUN THRU
-f=open('extract_train_data4','w')
+f=open('extract_500_recipes','w')
 #FOR EACH BOOK, SEND XML AND f (FILE STREAM) and 3 other files
 
 #open 3 other files once and then send to each of the books (faster/more efficient)
@@ -236,18 +245,32 @@ with open('measurements.txt') as f2:
 		if line.startswith('#'):
 			continue #skip comments in file
 		measures=set([line.rstrip('\n') for line in f2])
+
+#modified foods to take out measure words, and split into single words for comparison in ingPhraser
+#is improved; BUT NOT PERFECT...(could improve by adding more foods, removing stop/common words and remove #'s, and remove non food words)		
 with open('nyt-ingredients-snapshot-2015.csv') as csvfile:
 	reader=csv.DictReader(csvfile)
-	foods=set([])
+	tempFoods=set([]) #use set so don't get repeats (yes)
 	for row in reader:
-		foods.add(row['name'])
-	foods=[element.lower() for element in foods] #lowercase everything
+		tempFoods.add(row['name'])
+	tempFoods=[element.lower() for element in tempFoods] #lowercase everything
+	tempFoods=[element.split(' ') for element in tempFoods] #split everything into single words
+	foods=list(itertools.chain.from_iterable(tempFoods))
+	for f in foods:
+		if f in measures: 
+			foods.remove(f)
+		if f.isdigit():
+			foods.remove(f)
+		f=stemmer.stem(f) #stem all the foods (for differences like berry vs berries)	
+	foods.remove('of')	
+	foods.remove('the')	#of, the, be prove problematic...but doesn't entirely work to remove?? 
+	foods.remove('be')  #something else must be going on...????
 
-files=os.listdir('/home/cbuck/xmlRecipesBooks')
+files=os.listdir('/home/cbuck/recipes500')
 #print(files)
 for file in files:
 	print(file)
-	parsePrint('/home/cbuck/xmlRecipesBooks/'+file,f,cookWords,measures,foods)
+	parsePrint('/home/cbuck/recipes500/'+file,f,cookWords,measures,foods)
 #parsePrint('foodNewsletter.xml',f)
 #parsePrint('schoolfoodservic00mass_djvu.xml',f)
 #parsePrint('CAT31304297_djvu.xml',f)

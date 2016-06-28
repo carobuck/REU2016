@@ -7,6 +7,8 @@ import xml.etree.ElementTree as ET #need for parsing XML file of book
 import string #need for testing if punctuation in word
 #import nltk
 from nltk.stem.snowball import SnowballStemmer
+import csv
+import itertools #need for merging list of lists into a single list
 
 stemmer=SnowballStemmer("english")
 print(stemmer.stem("running"))
@@ -30,7 +32,7 @@ def numCookWords(page):
 				word=stemmer.stem(word)
 				if word in cookWords:
 					cWord+=1
-					print(word,origWord) #test to see if working
+				#	print(word,origWord) #test to see if working
 		if len(pg)==0:
 			return 0 #blank page, return 0
 		else:
@@ -84,25 +86,12 @@ def upperToTotalLetters(page):
 def pgLocation(loc,book):
 	return float(loc)/len(book)
 
-
-tree=ET.parse('foodNewsletter.xml') #parse xml
-pages=tree.findall(".//OBJECT") #store all the bk pages in list called 'pages'
-count=0 
-for p in pages:
-	count+=1
-	x = p.attrib['usemap'][:-5]
-	pgLocation(count,pages)
-
-
-
-#print(cookWords)
-
 def parsePrint(xmlBk,f):
 	tree=ET.parse(xmlBk) #parse xml
 	pages=tree.findall(".//OBJECT") #store all the bk pages in list called 'pages' 
 	for p in pages:
 		x = p.attrib['usemap'][:-5]
-		print(x+'\t'+str(numDigits(p))+'\t'+str(punct(p))+'\t'+str(scaledWords(p,pages)),file=f)
+		#print(x+'\t'+str(numDigits(p))+'\t'+str(punct(p))+'\t'+str(scaledWords(p,pages)),file=f)
 
 def numDigits(page):
 	digPunc=0
@@ -112,3 +101,124 @@ def numDigits(page):
 		
 	if len(pg)==0: #DONT FORGET TO DEAL WITH BLANK PAGES!!
 		return 0 #return 0 if have blank page
+
+def ingPhraserBAD(page,foods,measures):
+	ingPhrase=0
+	lines=page.findall(".//LINE")
+	if len(lines)==0: #deal with blank page
+		return 0
+	for l in lines:
+		foodWord=False
+		unitWord=False
+		#phrase=''
+		words=l.findall(".//WORD")
+		size = len(words)
+		if size>=11:
+			continue
+		for tag in words:
+			#phrase+=tag.text+' '
+			x=tag.text
+			x.casefold()
+			if not foodWord and x in foods:
+				if x.isalpha():
+					if x not in measures:
+						foodWord=True
+			if not unitWord and x in measures:
+				unitWord=True
+		if foodWord and unitWord: #(10 or fewer words on a line)
+			ingPhrase+=1
+	return ingPhrase #return proportion of ingPhrases/#lines on pg...
+	#^^^not perf; may bias towards recipes with fewer or more ingredients???
+
+
+#MODIFY THIS SO CHECKS IF GET MEASURE+[OF]+FOOD WORD
+def ingPhraser(page,foods,measures):
+	ingPhrase=0
+	lines=page.findall(".//LINE")
+	if len(lines)==0: #deal with blank page
+		return 0
+	for l in lines:
+		#foodWord=False #DON'T NEED ANYMORE??
+		unitWord=False
+		of=False
+		phrase=''  #use for debugging
+		words=l.findall(".//WORD")
+		for tag in words:
+			phrase+=tag.text+' '  #use for debugging
+			x=tag.text
+			x.casefold() 
+			if unitWord and of:
+				x=stemmer.stem(x)
+				if x in foods: 
+					ingPhrase+=1 # have MEASURE + OF + FOOD phrase
+					print(phrase) #debugging
+					break  #does this break out of the line??
+				else:
+					break #if next word isn't a food, want to break to next line
+			if unitWord:
+				x=stemmer.stem(x)
+				if x=='of':
+					of=True 
+					continue
+				elif x in foods:  
+					ingPhrase+=1 #have MEASURE + FOOD phrase
+					print(phrase) #debugging
+					break
+				else:
+					break #if next word isn't 'of' or food, want to break to next line (this may be a bit harsh/restrictive??)
+			if x in measures:
+				unitWord=True
+				continue
+	#return(ingPhrase)
+	#return float(ingPhrase)/len(lines)		
+# ^^^^CHECK TO MAKE SURE LOGIC WORKS AS I EXPECT IT TO...run to test;
+	
+
+with open('measurements.txt') as f2:
+	for line in f2:
+		line=line.strip()
+		if not line:
+			continue #skip blanks in file
+		if line.startswith('#'):
+			continue #skip comments in file
+		measures=set([line.rstrip('\n') for line in f2])
+#*****MODIFY THIS SO SPLIT ON SPACES AND TAKE OUT #/MEASURE WORDS AND COOK WORDS
+with open('nyt-ingredients-snapshot-2015.csv') as csvfile:
+	reader=csv.DictReader(csvfile)
+	tempFoods=set([]) #use set so don't get repeats (yes)
+	for row in reader:
+		tempFoods.add(row['name'])
+	tempFoods=[element.lower() for element in tempFoods] #lowercase everything
+	#print(foods)
+	tempFoods=[element.split(' ') for element in tempFoods] #split everything into single words
+	foods=list(itertools.chain.from_iterable(tempFoods))
+	#^^check over what I get from this before moving on...
+	print('\n'+'\n'+'poooop'+'\n')
+	print(len(foods))
+	for f in foods:
+		if f in measures: 
+			foods.remove(f)
+		if f.isdigit():
+			foods.remove(f)
+		f=stemmer.stem(f) #stem all the foods (for differences like berry vs berries)	
+	foods.remove('of')	
+	foods.remove('the')	#of, the, be prove problematic...but doesn't entirely work to remove?? 
+	foods.remove('be')  #something else must be going on...????
+			
+	print('\n'+'\n'+'poooop'+'\n')
+
+	print(len(foods))		
+
+print(stemmer.stem('berry')) #berries and berry both stem to berri! yay :)
+print(stemmer.stem('of'))
+
+print('\n'+'\n'+'poooop'+'\n')
+
+tree=ET.parse('foodNewsletter.xml') #parse xml
+pages=tree.findall(".//OBJECT") #store all the bk pages in list called 'pages'
+sumA=0
+sumBAD=0
+for p in pages:
+	sumA+=ingPhraser(p,foods,measures)
+	sumBAD+=ingPhraserBAD(p,foods,measures)
+print(str(sumA)+"\n"+"\n"+str(sumBAD))	

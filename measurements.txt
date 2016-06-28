@@ -5,7 +5,8 @@
 bag
 box
 c
-can
+#can #6/28: DECIDED TO TAKE THIS OUT; can is a very common word outside of cooking as well...
+clove
 cup
 dash
 drop
@@ -20,12 +21,14 @@ kg
 kilogram
 large
 liter
+little #common in older recipes
 measure
 mililiter
 ml
 ounce
 oz
 peck
+piece #common in older recipes
 pinch
 pint
 pound
