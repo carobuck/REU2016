@@ -112,27 +112,27 @@ print('\n'+'\n'+'poooop'+'\n')
 #			print(Xtest[i])
 
 #NOW TRY TO USE MODEL TO PREDICT/IDENTIFY RECIPES IN RANDOM BOOKS
-import pickle 	
-model=pickle.dumps(clf) 	#Store learned model
-clf2=pickle.loads(model)	#load learned model in 2nd classifier
-bk500X,ytrash=load_svmlight_file('MLfile500_3')
+#import pickle 	
+#model=pickle.dumps(clf) 	#Store learned model
+#clf2=pickle.loads(model)	#load learned model in 2nd classifier
+#bk500X,ytrash=load_svmlight_file('MLfile500_3')
 #print(bk500X,ytrash)
-predict500=clf2.predict(bk500X)
+#predict500=clf2.predict(bk500X)
 
-names500 = []
-with open('MLfile500_3') as f:
-	for line in f:
-		if '#' in line:
-			pos = line.index('#')
-			names500 += [line[pos:]]
-recipes=0
-for i in range(len(predict500)):
-	if predict500[i]==1:
-		#print(predict500[i])
-		print(names500[i]+'\t'+'0')
-		recipes+=1
-print(recipes)
-print(len(predict500))
+#names500 = []
+#with open('MLfile500_3') as f:
+#	for line in f:
+#		if '#' in line:
+#			pos = line.index('#')
+#			names500 += [line[pos:]]
+#recipes=0
+#for i in range(len(predict500)):
+#	if predict500[i]==1:
+#		#print(predict500[i])
+#		print(names500[i]+'\t'+'0')
+#		recipes+=1
+#print(recipes)
+#print(len(predict500))
 
 #Plot precision-recall curve (THIS IS PLOT OF TEST DATA; WHAT USED TO TRAIN MACHINE)
 plt.clf()

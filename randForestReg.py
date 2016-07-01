@@ -21,9 +21,9 @@ from sklearn.preprocessing import label_binarize
 from sklearn.multiclass import OneVsRestClassifier
 from sklearn.metrics import confusion_matrix
 
-X_train, y_train=load_svmlight_file("MLfileRecipe_train4")
+X_train, y_train=load_svmlight_file("MLfileRecipe_train5")
 names = []
-with open('MLfileRecipe_train4') as f:
+with open('MLfileRecipe_train5') as f:
 	for line in f:
 		if '#' in line:
 			pos = line.index('#')
@@ -90,8 +90,9 @@ print('\n'+'\n'+'poooop'+'\n')
 #import pickle 	
 #model=pickle.dumps(clf) 	#Store learned model
 #clf2=pickle.loads(model)	#load learned model in 2nd classifier
-clf2 = clf
-bk500X,ytrash=load_svmlight_file('MLfile500_3')
+
+clf2 = clf  #DON'T NEED TO PICKLE; CAN JUST STORE IN ANOTHER VARIABLE
+bk500X,ytrash=load_svmlight_file('MLfile_FIXED_data')
 #print(bk500X,ytrash)
 predict500=clf2.predict(bk500X)
 #score=clf2.predict_proba(bk500X)
@@ -103,7 +104,7 @@ predict500=clf2.predict(bk500X)
 
 #print(percentRecipe)
 names500 = []
-with open('MLfile500_3') as f:
+with open('MLfile_FIXED_data') as f:
 	for line in f:
 		if '#' in line:
 			pos = line.index('#')
@@ -117,7 +118,7 @@ for i in range(len(predict500)):
 		print(names500[i]+'\t'+'0')
 		#print(percentRecipe[i])
 		recipes+=1
-ranked = sorted(toRank, reverse=True)[:100] #this last bit takes just the top 100; reverse ranks from high->low
+ranked = sorted(toRank, reverse=True)[:7000] #this last bit takes just the top 100; reverse ranks from high->low
 print(ranked) #print top 100 "recipes"
 print(recipes)
 print(len(predict500))
@@ -128,5 +129,5 @@ print(len(predict500))
 
 #THIS ALG DOESN'T LIKE THIS....
 #report error rate
-Err=1-metrics.jaccard_similarity_score(Yhat,Ytest) #CHANGED YTEST TO YLEARN
-print("Training Error Rate is: %.4f"%(Err,))
+#Err=1-metrics.jaccard_similarity_score(Yhat,Ytest) #CHANGED YTEST TO YLEARN
+#print("Training Error Rate is: %.4f"%(Err,))

@@ -7,6 +7,7 @@ stemmer=SnowballStemmer("english") #set up stemmer
 import os
 from os import listdir #need for reading all files from folder
 import csv 
+import itertools #need for condensing list
 
 #function to parse a book and print its features to a file
 #parameters: takes a XML book file; like in this form: 'foodNewsletter.xml'
@@ -31,8 +32,8 @@ def parsePrint(xmlBk,f,cookWords,measures,foods):
 				moreThan10(p),
 				pgLocation(count,pages),
 				ingPhraser(p,foods,measures)
-				]; 
-			print(x+'\t'+'\t'.join([str(f) for f in features]),file=f)
+				];
+			print(x+'\t'+'\t'.join([str(ft) for ft in features]),file=f)
 
 			#print(x+'\t'+str(numDigits(p))+'\t'+str(scaledPunc(p,avgP))+'\t'+str(scaledWords(p,avgW))+'\t'+str(numCookWords(p,cookWords))+'\t'+str(numMeasureWords(p,measures))+'\t'+str(upperToTotalLetters(p))+'\t'+str(moreThan10(p))+'\t'+str(pgLocation(count,pages))+'\t'+str(ingPhraser(p,foods,measures)),file=f)
 			#print(x+'\t'+str(numDigits(p))+'\t'+str(punct(p))+'\t'+str(numCookWords(p))+'\t'+str(numMeasureWords(p))+'\t'+str(pgLocation(count,pages))+'\t'+str(upperToTotalLetters(p)),file=f)
@@ -222,10 +223,10 @@ def ingPhraser(page,foods,measures):
 				continue
 	#return(ingPhrase)
 	return float(ingPhrase)/len(lines)		
-	
+
 
 #OPEN ONE OUTPUT FILE FOR HOWEVER MANY BOOKS TO RUN THRU
-f=open('extract_500_recipes','w')
+f=open('extract_old_cookbooks','w')
 #FOR EACH BOOK, SEND XML AND f (FILE STREAM) and 3 other files
 
 #open 3 other files once and then send to each of the books (faster/more efficient)
@@ -256,21 +257,21 @@ with open('nyt-ingredients-snapshot-2015.csv') as csvfile:
 	tempFoods=[element.lower() for element in tempFoods] #lowercase everything
 	tempFoods=[element.split(' ') for element in tempFoods] #split everything into single words
 	foods=list(itertools.chain.from_iterable(tempFoods))
-	for f in foods:
-		if f in measures: 
-			foods.remove(f)
-		if f.isdigit():
-			foods.remove(f)
-		f=stemmer.stem(f) #stem all the foods (for differences like berry vs berries)	
+	for food in foods:
+		if food in measures: 
+			foods.remove(food)
+		if food.isdigit():
+			foods.remove(food)
+		food=stemmer.stem(food) #stem all the foods (for differences like berry vs berries)	
 	foods.remove('of')	
 	foods.remove('the')	#of, the, be prove problematic...but doesn't entirely work to remove?? 
 	foods.remove('be')  #something else must be going on...????
 
-files=os.listdir('/home/cbuck/recipes500')
+files=os.listdir('/home/cbuck/oldCookbooksXML')
 #print(files)
 for file in files:
 	print(file)
-	parsePrint('/home/cbuck/recipes500/'+file,f,cookWords,measures,foods)
+	parsePrint('/home/cbuck/oldCookbooksXML/'+file,f,cookWords,measures,foods)
 #parsePrint('foodNewsletter.xml',f)
 #parsePrint('schoolfoodservic00mass_djvu.xml',f)
 #parsePrint('CAT31304297_djvu.xml',f)
@@ -278,7 +279,8 @@ for file in files:
 #parsePrint('schfoodservic7277mont_djvu.xml',f)
 #parsePrint('CAT31303133_djvu.xml',f)
 #parsePrint('CAT81760442_djvu.xml',f)
-#parsePrint('skilfulhousewife00unse_djvu.xml',f)
+
+#parsePrint('houseservantsdir00robe_djvu.xml',f,cookWords,measures,foods)
 #CLOSE OUTPUT FILE AFTER RUN ALL THE BOOKS
 f.close()
 
