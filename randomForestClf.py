@@ -31,7 +31,7 @@ with open('MLfileRecipe_train5') as f:
 #print(names)
 
 #Define the parameter grid 
-param_grid=[{'n_estimators':[5,10,15],'criterion':['gini','entropy'],'max_features':['auto','sqrt','log2'],'n_estimators':[100],'max_depth':[10]}]
+param_grid=[{'criterion':['gini','entropy'],'max_features':['auto','sqrt','log2'],'n_estimators':[100],'max_depth':[10]}]
 
 #Create a learning set/test set split
 #*****CAN CHANGE TO .75 IN TEST AND STILL GET 90-92% ACCURACY!!*****
@@ -54,7 +54,7 @@ Yhat=clf.predict(Xtest) #expected outcomes, using the model
 #Yhat=clf.predict(Xlearn) #see if it can predict the training ones right at all (if not, 3 features are currently garbage)
 Yd=clf.predict_proba(Xtest) #changed Xtest to Xlearn
 
-print(Yd) #this gives probability for a page of being recipe or not (% rec, % not) 
+#print(Yd) #this gives probability for a page of being recipe or not (% rec, % not) 
 #try adding in function to score data points, to see how far off things are from being marked as recipe or not
 score=clf.score(Xtest,Ytest)
 print(score) #this score is accuracy for randforestclf
@@ -93,7 +93,7 @@ print('\n'+'\n'+'poooop'+'\n')
 #clf2=pickle.loads(model)	#load learned model in 2nd classifier
 
 clf2 = clf #can just put in a different variable; don't need to pickle
-bk500X,ytrash=load_svmlight_file('MLfile_FIXED_data')
+bk500X,ytrash=load_svmlight_file('MLfile_indianMealBk2')
 #print(bk500X,ytrash)
 predict500=clf2.predict(bk500X)
 
@@ -107,7 +107,7 @@ predict500=clf2.predict(bk500X)
 #print(percentRecipe)
 
 names500 = []
-with open('MLfile_FIXED_data') as f:
+with open('MLfile_indianMealBk2') as f:
 	for line in f:
 		if '#' in line:
 			pos = line.index('#')

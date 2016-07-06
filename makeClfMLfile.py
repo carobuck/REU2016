@@ -1,7 +1,7 @@
 from __future__ import print_function #need this to print to file
 
-outf=open('MLfile_houseServDir','w') #open file for machine learning output
-with open('extract_houseServDir') as f:
+outf=open('MLfile_indianMealBk2','w') #open file for machine learning output
+with open('extract_indianMealBk2') as f:
 	for line in f:
 	 	#strip() gets rid of newlines (on right and left)
 		arr=line.strip().split('\t')
