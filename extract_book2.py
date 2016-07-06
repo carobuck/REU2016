@@ -32,6 +32,7 @@ def parsePrint(xmlBk,f,cookWords,measures,foods):
 				moreThan10(p),
 				pgLocation(count,pages),
 				ingPhraser(p,foods,measures)
+				numberWords(p)
 				];
 			print(x+'\t'+'\t'.join([str(ft) for ft in features]),file=f)
 
@@ -39,19 +40,34 @@ def parsePrint(xmlBk,f,cookWords,measures,foods):
 			#print(x+'\t'+str(numDigits(p))+'\t'+str(punct(p))+'\t'+str(numCookWords(p))+'\t'+str(numMeasureWords(p))+'\t'+str(pgLocation(count,pages))+'\t'+str(upperToTotalLetters(p)),file=f)
 			#print(x+'\t'+str(punct(p))+'\t'+str(scaledWords(p,pages))+'\t'+str(numCookWords(p))+'\t'+str(numMeasureWords(p))+'\t'+str(pgLocation(count,pages))+'\t'+str(upperToTotalLetters(p)),file=f)
 
-#counts # of digits and digits with punctuation
-def numDigits(page):
-	digPunc=0
+#this func returns proportion of number words on a page
+#number_words is global constant; hopefully it will acct for 1-100s
+NUMBER_WORDS = set(['one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety','hundred'])
+def numberWords(page):
 	pg=page.findall(".//WORD")
 	if len(pg)==0:
 		return 0 #return 0 if have blank page
 	else:
+		num=0
+		for tag in pg:
+			word=tag.text
+			word=word.casefold()
+			if word in NUMBER_WORDS:
+				num+=1
+		return float(num)/len(pg)		
+
+#counts # of digits and digits with punctuation
+def numDigits(page):
+	pg=page.findall(".//WORD")
+	if len(pg)==0:
+		return 0 #return 0 if have blank page
+	else:
+		digPunc=0
 		for tag in pg:
 			word=tag.text
 			num=False
 			punc=False
 			if word.isdigit():
-				#print word
 				digPunc+=1
 			else:
 				for c in word:
@@ -61,7 +77,6 @@ def numDigits(page):
 						num=True
 				if punc and num:
 					digPunc+=1
-					#print word
 		return float(digPunc)/len(pg) #return proportion of # digits to # words on pg
 
 #returns proportion of punctuation to words on a single page
@@ -226,7 +241,7 @@ def ingPhraser(page,foods,measures):
 
 
 #OPEN ONE OUTPUT FILE FOR HOWEVER MANY BOOKS TO RUN THRU
-f=open('extract_old_cookbooks','w')
+f=open('extract_indianMealBk2','w')
 #FOR EACH BOOK, SEND XML AND f (FILE STREAM) and 3 other files
 
 #open 3 other files once and then send to each of the books (faster/more efficient)
@@ -269,9 +284,11 @@ with open('nyt-ingredients-snapshot-2015.csv') as csvfile:
 
 files=os.listdir('/home/cbuck/oldCookbooksXML')
 #print(files)
-for file in files:
-	print(file)
-	parsePrint('/home/cbuck/oldCookbooksXML/'+file,f,cookWords,measures,foods)
+
+#for file in files:
+#	print(file)
+#	parsePrint('/home/cbuck/oldCookbooksXML/'+file,f,cookWords,measures,foods)
+
 #parsePrint('foodNewsletter.xml',f)
 #parsePrint('schoolfoodservic00mass_djvu.xml',f)
 #parsePrint('CAT31304297_djvu.xml',f)
@@ -280,9 +297,15 @@ for file in files:
 #parsePrint('CAT31303133_djvu.xml',f)
 #parsePrint('CAT81760442_djvu.xml',f)
 
-#parsePrint('houseservantsdir00robe_djvu.xml',f,cookWords,measures,foods)
+parsePrint('b21526618_djvu.xml',f,cookWords,measures,foods)
 #CLOSE OUTPUT FILE AFTER RUN ALL THE BOOKS
 f.close()
 
 
 
+#ADDING SOME STUFF BELOW FOR IMPLEMENTING ON PARALLEL COMPUTING...to read in files like John showed me with full book path
+#with open('INSERT FILE NAME HERE') as bkF:
+#	for line in bkF: 
+#		parsePrint(line,f,cookWords,measures,foods)
+
+#^^^^^everything (all features for bk pages) will be stored to file 'f'.... <--maybe change this for parallel computing??
