@@ -5,7 +5,7 @@ non=0
 yes=0
 
 judgmentByPageId = {} #make a map/dict to store data and key
-with open('recipeTestDataFIXED.txt') as f:
+with open('recipeVsWith1848') as f:
 	for line in f:
 		line = line.strip() #strip newlines/blanks at beg/end of line
 		if not line: 
@@ -30,8 +30,8 @@ print(yes)
 #print(judgmentByPageId) this line prints the map/dict made above
 #print(judgmentByPageId['feasibilitystudy02mill_0218']) this line shows how to access value for given key in dict
 
-outf=open('MLfile_FIXED_data','w') #open file for machine learning output
-with open('extract_500_recipes2') as f:
+outf=open('MLfileRecipe_train6','w') #open file for machine learning output
+with open('extract_train_data6') as f:
 	for line in f:
 	 	#strip() gets rid of newlines (on right and left)
 		arr=line.strip().split('\t')

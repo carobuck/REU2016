@@ -8,6 +8,7 @@ import os
 from os import listdir #need for reading all files from folder
 import csv 
 import itertools #need for condensing list
+import sys #need for sys.argv (parallelization on cluster)
 
 #function to parse a book and print its features to a file
 #parameters: takes a XML book file; like in this form: 'foodNewsletter.xml'
@@ -32,7 +33,7 @@ def parsePrint(xmlBk,f,cookWords,measures,foods):
 				moreThan10(p),
 				pgLocation(count,pages),
 				ingPhraser(p,foods,measures)
-				#numberWords(p)
+				#numberWords(p) #this feature yields worse performance/accuracy :(
 				];
 			print(x+'\t'+'\t'.join([str(ft) for ft in features]),file=f)
 
@@ -42,6 +43,7 @@ def parsePrint(xmlBk,f,cookWords,measures,foods):
 
 #this func returns proportion of number words on a page
 #number_words is global constant; hopefully it will acct for 1-100s
+#THIS FEATURE YIELDS WORSE RESULTS, SO IT WAS TAKEN OUT...
 NUMBER_WORDS = set(['one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety','hundred'])
 def numberWords(page):
 	pg=page.findall(".//WORD")
@@ -282,7 +284,7 @@ with open('nyt-ingredients-snapshot-2015.csv') as csvfile:
 	foods.remove('the')	#of, the, be prove problematic...but doesn't entirely work to remove?? 
 	foods.remove('be')  #something else must be going on...????
 
-files=os.listdir('/home/cbuck/xmlRecipesBooks')
+#files=os.listdir('/home/cbuck/xmlRecipesBooks')
 #print(files)
 
 #for file in files:
@@ -302,10 +304,15 @@ parsePrint('naturalhistory84newy_djvu.xml',f,cookWords,measures,foods)
 f.close()
 
 
+# for parallel/cluster, will be in form: python[script_name, input file, output file] <--can access with sys.argv
 
 #ADDING SOME STUFF BELOW FOR IMPLEMENTING ON PARALLEL COMPUTING...to read in files like John showed me with full book path
-#with open('INSERT FILE NAME HERE') as bkF:
+#f=open(sys.argv[1],'w')
+#with open(sys.argv[2]) as bkF:
 #	for line in bkF: 
 #		parsePrint(line,f,cookWords,measures,foods)
+#f.close() #close output file when done --->need to close input file also??
 
 #^^^^^everything (all features for bk pages) will be stored to file 'f'.... <--maybe change this for parallel computing??
+#^^for each input file, will get a different output file (b/c all run at same time on cluster)
+
