@@ -243,7 +243,7 @@ def ingPhraser(page,foods,measures):
 
 
 #OPEN ONE OUTPUT FILE FOR HOWEVER MANY BOOKS TO RUN THRU
-f=open('extract_natHist2','w')
+#f=open('extract_natHist2','w')
 #FOR EACH BOOK, SEND XML AND f (FILE STREAM) and 3 other files
 
 #open 3 other files once and then send to each of the books (faster/more efficient)
@@ -299,19 +299,19 @@ with open('nyt-ingredients-snapshot-2015.csv') as csvfile:
 #parsePrint('CAT31303133_djvu.xml',f)
 #parsePrint('CAT81760442_djvu.xml',f)
 
-parsePrint('naturalhistory84newy_djvu.xml',f,cookWords,measures,foods)
+#parsePrint('naturalhistory84newy_djvu.xml',f,cookWords,measures,foods)
 #CLOSE OUTPUT FILE AFTER RUN ALL THE BOOKS
-f.close()
+#f.close()
 
 
 # for parallel/cluster, will be in form: python[script_name, input file, output file] <--can access with sys.argv
 
 #ADDING SOME STUFF BELOW FOR IMPLEMENTING ON PARALLEL COMPUTING...to read in files like John showed me with full book path
-#f=open(sys.argv[1],'w')
-#with open(sys.argv[2]) as bkF:
-#	for line in bkF: 
-#		parsePrint(line,f,cookWords,measures,foods)
-#f.close() #close output file when done --->need to close input file also??
+f=open(sys.argv[1],'w')
+with open(sys.argv[2]) as bkF:
+	for line in bkF: 
+		parsePrint(line,f,cookWords,measures,foods)
+f.close() #close output file when done --->need to close input file also??
 
 #^^^^^everything (all features for bk pages) will be stored to file 'f'.... <--maybe change this for parallel computing??
 #^^for each input file, will get a different output file (b/c all run at same time on cluster)
