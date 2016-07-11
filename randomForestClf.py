@@ -87,11 +87,11 @@ print('\n'+'\n'+'poooop'+'\n')
 #			print(Xtest[i])
 
 #NOW TRY TO USE MODEL TO PREDICT/IDENTIFY RECIPES IN RANDOM BOOKS
-#import pickle 	
-#model=pickle.dumps(clf) 	#Store learned model
-#clf2=pickle.loads(model)	#load learned model in 2nd classifier
+import pickle 	
+pickle.dump(clf, open("saveModel.p","wb")) 	#Store learned model
+clf2=pickle.load(open("saveModel.p","rb"))	#load learned model in 2nd classifier
 
-clf2 = clf #can just put in a different variable; don't need to pickle
+#clf2 = clf #can just put in a different variable; don't need to pickle
 bk500X,ytrash=load_svmlight_file('MLfile_natHist2')
 #print(bk500X,ytrash)
 predict500=clf2.predict(bk500X)
