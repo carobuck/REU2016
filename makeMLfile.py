@@ -30,14 +30,23 @@ print(yes)
 #print(judgmentByPageId) this line prints the map/dict made above
 #print(judgmentByPageId['feasibilitystudy02mill_0218']) this line shows how to access value for given key in dict
 
-outf=open('MLfileRecipe_train6','w') #open file for machine learning output
-with open('extract_train_data6') as f:
+outf=open('MLfile_top_4','w') #open file for machine learning output
+
+with open('extract_train_data5') as f:
 	for line in f:
 	 	#strip() gets rid of newlines (on right and left)
 		arr=line.strip().split('\t')
 		#print(arr)
 		if arr[0] in judgmentByPageId:
 			featureStr=judgmentByPageId[arr[0]] #put judgment in featureStr
+
+			#modify/zero out individual feature
+			arr[1+1]='0'	#drop feature 3; need +1 b/c name in arr
+			arr[1+2]='0'
+			arr[1+5]='0'
+			arr[1+6]='0'
+			arr[1+7]='0'
+
 			for i in range(len(arr[1:])): #len is getting # of features
 				featureStr+=' '+str(i+1)+':'+arr[i+1] #add all features to featureStr with proper formatting
 			featureStr+=' #'+arr[0]

@@ -13,35 +13,13 @@ from sklearn.datasets import load_svmlight_file #import command for using my svm
 from sklearn import ensemble #need for randomForestClassifier
 import pickle
 
-clf2=pickle.load(open("saveModel.p","rb"))	#load learned model in 2nd classifier
+clf=pickle.load(open("saveModel.p","rb"))
+clf2=pickle.load(open("saveModel_2clf.p","rb"))	#load learned model in 2nd classifier
 
-
-#clf2 = clf #can just put in a different variable; don't need to pickle
-bk500X,ytrash=load_svmlight_file('MLfile_natHist2')
-#print(bk500X,ytrash)
-predict500=clf2.predict(bk500X)
-
-names500 = []
-with open('MLfile_natHist2') as f:
-	for line in f:
-		if '#' in line:
-			pos = line.index('#')
-			names500 += [line[pos:]]
-#rec100=[] #100% a recipe according to alg; list to store page names
-recipes=0
-for i in range(len(predict500)):
-	if predict500[i]==1:
-		#rec100.append(names500[i])
-		#print(predict500[i])
-		print(names500[i])
-		#print(percentRecipe[i])
-		recipes+=1
-print(recipes)
-print(len(predict500))
 
 #open a file to record names of pages classified as recipes
 #outf=open('clfAsRecipe','w') #WANT 'W' OR 'A' FOR THIS?!?! WRITE OR APPEND??
-outf=open('percentClfAsRecipe','w')
+outf=open('/home/cbuck/percentClfAsRecipe_2clf','w') #save in home directory
 
 #process function runs model over lines (bk pages) and predicts if they have recipe
 def process(lines):
@@ -60,25 +38,29 @@ def process(lines):
 		names.append(arr[0])
 	#print(pgs) #debugging
 	#predictPgs=clf2.predict(pgs) #use predict if just want y/n, 1 or -1 classification
-	predictPgs=clf2.predict_proba(pgs) #use predict_proba if want % a page is a recipe
-	print(predictPgs)
+	predictPgs=clf.predict_proba(pgs) #use predict_proba if want % a page is a recipe
+	predictPgs2=clf2.predict_proba(pgs) #USE SECOND, RETRAINED CLF HERE
+	#print(predictPgs) #debugging
+	#print(predictPgs2) #debugging
 	rec=0
 	for i in range(len(predictPgs)):
-		if predictPgs[i,1]!=0:
+		if predictPgs[i,1]!=0 and predictPgs2[i,1]!=0: #predicted as >0% recipe for both clf
 			rec+=1
-			print(names[i])
-			print(names[i]+'\t'+str(predictPgs[i,1])+'\n',file=outf) #print pgID and %recipe
+			#print(names[i])
+			print(names[i]+'\t'+str(predictPgs[i,1])+'\t'+str(predictPgs2[i,1])+'\n',file=outf) #print pgID and %recipe
 	return(rec)
 
 #trying to get only 1000 lines at a time from giant file...
 with open("/home/cbuck/some_features") as bigF:
 	afew = []
 	recipes=0
-	for line in bigF:
+	for idx, line in enumerate(bigF):
+		if idx%20000==0:
+			print(idx)
 		if(len(afew) >= 100):
 			#print(afew) #debugging
 			recipes+=process(afew)
-			break		#can use break to play around with for debugging purposes
+			#break		#can use break to play around with for debugging purposes
 						#and can deal with just a few lines at a time, like 5, rather than 1000
 			afew = [] #clear list again to read in new things...
 		afew += [line]
