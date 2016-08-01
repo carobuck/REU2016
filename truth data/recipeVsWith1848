@@ -1,0 +1,643 @@
+#handmade file for scanned recipes vs other stuff
+#is like proseVsOther.txt
+# 1=recipe; 0=NOT recipe
+
+treasurestatesch7172mont_0014	1
+treasurestatesch7172mont_0023	1
+treasurestatesch7172mont_0026	1
+treasurestatesch7172mont_0038	0
+treasurestatesch7172mont_0039	0
+treasurestatesch7172mont_0040	0
+treasurestatesch7172mont_0043	1
+treasurestatesch7172mont_0044	1
+treasurestatesch7172mont_0045	1
+treasurestatesch7172mont_0046	1
+treasurestatesch7172mont_0059	1
+treasurestatesch7172mont_0055	0
+treasurestatesch7172mont_0071	0
+treasurestatesch7172mont_0076	0
+treasurestatesch7172mont_0080	0
+treasurestatesch7172mont_0086	1
+treasurestatesch7172mont_0101	1
+treasurestatesch7172mont_0109	0
+treasurestatesch7172mont_0101	1
+treasurestatesch7172mont_0119	1
+schoolfoodservic00mass_0011	0
+schoolfoodservic00mass_0015	0
+CAT31304297_0015	0
+CAT31304297_0020	0
+CAT31304297_0007	0
+
+CAT31293900_0017	0
+CAT31293900_0013	0
+CAT31293900_0019	1
+CAT31293900_0027	1
+CAT31293900_0029	1
+CAT31293900_0031	1
+CAT31293900_0033	1
+CAT31293900_0035	1
+CAT31293900_0037	1
+CAT31293900_0041	1
+CAT31293900_0043	1
+CAT31293900_0040	0
+CAT31293900_0045	1
+CAT31293900_0047	1
+CAT31293900_0049	1
+CAT31293900_0051	1
+CAT31293900_0053	1
+CAT31293900_0059	1
+CAT31293900_0061	1
+CAT31293900_0063	1
+CAT31293900_0065	1
+CAT31293900_0067	1
+CAT31293900_0073	1
+CAT31293900_0083	1
+CAT31293900_0085	1
+CAT31293900_0089	1
+CAT31293900_0129	1
+CAT31293900_0131	1
+CAT31293900_0135	1
+CAT31293900_0137	1
+CAT31293900_0139	1
+CAT31293900_0141	1
+CAT31293900_0143	1
+CAT31293900_0145	1
+CAT31293900_0147	1
+CAT31293900_0149	1
+CAT31293900_0151	1
+CAT31293900_0153	1
+CAT31293900_0155	1
+CAT31293900_0157	1
+CAT31293900_0159	1
+CAT31293900_0161	1
+CAT31293900_0163	1
+
+schfoodservic7277mont_0004	1
+schfoodservic7277mont_0005	0
+schfoodservic7277mont_0008	0
+schfoodservic7277mont_0027	1
+schfoodservic7277mont_0024	0
+schfoodservic7277mont_0025	1
+schfoodservic7277mont_0026	1
+schfoodservic7277mont_0029	1
+schfoodservic7277mont_0030	1
+schfoodservic7277mont_0034	1
+schfoodservic7277mont_0044	0
+schfoodservic7277mont_0051	0
+schfoodservic7277mont_0066	1
+schfoodservic7277mont_0092	0
+schfoodservic7277mont_0093	1
+schfoodservic7277mont_0139	1
+schfoodservic7277mont_0179	1
+schfoodservic7277mont_0181	1
+schfoodservic7277mont_0200	1
+schfoodservic7277mont_0212	1
+
+#THESE ARE SIDEWAYS PAGES...wonder if that will make a difference?? (YES; UTTER GARBAGE IN XML FILE!!!!)
+#CAT31303133_0009	0
+#CAT31303133_0018	0
+#CAT31303133_0031	0
+#CAT31303133_0032	0
+#CAT31303133_0044	1
+#CAT31303133_0045	1
+#CAT31303133_0053	1
+#CAT31303133_0059	1
+#CAT31303133_0069	1
+#CAT31303133_0077	1
+#CAT31303133_0081	1
+#CAT31303133_0099	1
+#CAT31303133_0107	1
+
+CAT81760442_0033	0
+CAT81760442_0046	0
+CAT81760442_0010	0
+
+skilfulhousewife00unse_0019	0
+skilfulhousewife00unse_0020	0
+skilfulhousewife00unse_0023	1
+skilfulhousewife00unse_0024	1
+skilfulhousewife00unse_0025	1
+skilfulhousewife00unse_0027	1
+skilfulhousewife00unse_0030	1
+skilfulhousewife00unse_0032	1
+skilfulhousewife00unse_0033	1
+skilfulhousewife00unse_0034	1
+skilfulhousewife00unse_0035	1
+skilfulhousewife00unse_0037	1
+skilfulhousewife00unse_0046	1
+skilfulhousewife00unse_0050	1
+skilfulhousewife00unse_0068	1
+skilfulhousewife00unse_0105	1
+skilfulhousewife00unse_0128	0
+skilfulhousewife00unse_0131	0
+
+#NEW AS OF WED 6/15/16
+charityunitedmet00char_0005	0
+charityunitedmet00char_0011	1
+charityunitedmet00char_0012	1
+charityunitedmet00char_0013	1
+charityunitedmet00char_0014	1
+charityunitedmet00char_0015	1
+charityunitedmet00char_0016	1
+charityunitedmet00char_0017	1
+charityunitedmet00char_0025	1
+charityunitedmet00char_0026	1
+charityunitedmet00char_0023	1
+charityunitedmet00char_0024	1
+charityunitedmet00char_0027	1
+charityunitedmet00char_0028	1
+charityunitedmet00char_0029	1
+charityunitedmet00char_0030	1
+charityunitedmet00char_0031	1
+charityunitedmet00char_0032	1
+charityunitedmet00char_0033	1
+charityunitedmet00char_0034	1
+charityunitedmet00char_0035	1
+charityunitedmet00char_0036	1
+charityunitedmet00char_0037	1
+charityunitedmet00char_0076	1
+charityunitedmet00char_0077	1
+charityunitedmet00char_0078	1
+charityunitedmet00char_0079	1
+charityunitedmet00char_0080	1
+charityunitedmet00char_0140	1
+charityunitedmet00char_0141	1
+charityunitedmet00char_0144	1
+charityunitedmet00char_0145	1
+charityunitedmet00char_0148	1
+charityunitedmet00char_0149	1
+charityunitedmet00char_0150	1
+charityunitedmet00char_0153	1
+charityunitedmet00char_0171	1
+
+ogilviesbookforc00unse_0006	0
+ogilviesbookforc00unse_0008	0
+ogilviesbookforc00unse_0011	0
+ogilviesbookforc00unse_0014	0
+ogilviesbookforc00unse_0019	0
+ogilviesbookforc00unse_0018	1
+ogilviesbookforc00unse_0027	1
+ogilviesbookforc00unse_0028	1
+ogilviesbookforc00unse_0029	1
+ogilviesbookforc00unse_0032	1
+ogilviesbookforc00unse_0034	1
+ogilviesbookforc00unse_0043	1
+ogilviesbookforc00unse_0048	1
+ogilviesbookforc00unse_0049	1
+ogilviesbookforc00unse_0050	1
+ogilviesbookforc00unse_0051	1
+ogilviesbookforc00unse_0052	1
+ogilviesbookforc00unse_0053	1
+ogilviesbookforc00unse_0056	1
+ogilviesbookforc00unse_0057	1
+ogilviesbookforc00unse_0058	1
+ogilviesbookforc00unse_0059	1
+ogilviesbookforc00unse_0060	1
+ogilviesbookforc00unse_0065	1
+ogilviesbookforc00unse_0066	1
+ogilviesbookforc00unse_0067	1
+ogilviesbookforc00unse_0068	1
+ogilviesbookforc00unse_0069	1
+ogilviesbookforc00unse_0075	1
+ogilviesbookforc00unse_0082	1
+ogilviesbookforc00unse_0104	1
+ogilviesbookforc00unse_0105	1
+ogilviesbookforc00unse_0106	1
+ogilviesbookforc00unse_0107	1
+ogilviesbookforc00unse_0108	1
+ogilviesbookforc00unse_0109	1
+ogilviesbookforc00unse_0110	1
+ogilviesbookforc00unse_0111	1
+ogilviesbookforc00unse_0112	1
+ogilviesbookforc00unse_0157	1
+ogilviesbookforc00unse_0158	1
+
+queens_0001	0
+queens_0003	0
+queens_0006	1
+queens_0007	1
+queens_0010	1
+queens_0013	1
+queens_0014	1
+queens_0015	1
+queens_0018	1
+queens_0021	1
+queens_0022	1
+queens_0023	1
+queens_0024	1
+queens_0025	1
+queens_0026	1
+queens_0030	1
+queens_0033	1
+queens_0038	1
+queens_0046	1
+queens_0047	1
+queens_0048	1
+queens_0049	1
+queens_0050	1
+queens_0051	1
+queens_0052	1
+queens_0055	1
+queens_0056	1
+queens_0057	0
+queens_0058	0
+
+recipes00comp_0021	1
+recipes00comp_0023	1
+recipes00comp_0025	1
+recipes00comp_0024	1
+recipes00comp_0026	1
+recipes00comp_0039	1
+recipes00comp_0040	1
+recipes00comp_0043	1
+recipes00comp_0056	1
+recipes00comp_0062	1
+recipes00comp_0075	1
+recipes00comp_0126	1
+recipes00comp_0140	1
+recipes00comp_0146	1
+recipes00comp_0147	1
+recipes00comp_0338	1
+recipes00comp_0339	1
+recipes00comp_0340	1
+recipes00comp_0341	1
+recipes00comp_0342	1
+recipes00comp_0343	1
+recipes00comp_0344	1
+recipes00comp_0345	1
+recipes00comp_0346	1
+recipes00comp_0347	1
+recipes00comp_0348	1
+recipes00comp_0349	1
+recipes00comp_0350	1
+recipes00comp_0351	1
+recipes00comp_0352	1
+recipes00comp_0353	1
+recipes00comp_0354	1
+recipes00comp_0355	1
+recipes00comp_0356	1
+recipes00comp_0357	1
+recipes00comp_0358	1
+recipes00comp_0359	1
+recipes00comp_0360	1
+recipes00comp_0361	1
+recipes00comp_0362	1
+recipes00comp_0363	1
+recipes00comp_0364	1
+recipes00comp_0365	1
+recipes00comp_0485	1
+recipes00comp_0486	1
+recipes00comp_0487	1
+recipes00comp_0488	1
+recipes00comp_0489	1
+recipes00comp_0490	1
+recipes00comp_0491	1
+recipes00comp_0492	1
+recipes00comp_0493	1
+recipes00comp_0494	1
+recipes00comp_0495	1
+recipes00comp_0496	1
+recipes00comp_0497	1
+recipes00comp_0498	1
+recipes00comp_0499	1
+recipes00comp_0500	1
+recipes00comp_0501	1
+recipes00comp_0502	1
+recipes00comp_0503	1
+recipes00comp_0504	1
+recipes00comp_0505	1
+recipes00comp_0506	1
+recipes00comp_0507	1
+recipes00comp_0508	1
+recipes00comp_0517	1
+recipes00comp_0540	1
+recipes00comp_0541	0
+
+newyorkworldsfai00gaig_0011	0
+newyorkworldsfai00gaig_0013	0
+newyorkworldsfai00gaig_0023	1
+newyorkworldsfai00gaig_0024	1
+newyorkworldsfai00gaig_0028	1
+newyorkworldsfai00gaig_0030	1
+newyorkworldsfai00gaig_0032	1
+newyorkworldsfai00gaig_0036	1
+newyorkworldsfai00gaig_0037	1
+newyorkworldsfai00gaig_0044	1
+newyorkworldsfai00gaig_0053	1
+newyorkworldsfai00gaig_0069	1
+newyorkworldsfai00gaig_0073	1
+
+eurocook00brow_0016	0
+eurocook00brow_0017	0
+eurocook00brow_0025	0
+eurocook00brow_0027	1
+eurocook00brow_0031	1
+eurocook00brow_0033	1
+eurocook00brow_0042	1
+eurocook00brow_0062	1
+eurocook00brow_0063	1
+eurocook00brow_0068	1
+eurocook00brow_0070	1
+eurocook00brow_0071	1
+eurocook00brow_0073	1
+eurocook00brow_0079	1
+eurocook00brow_0080	1
+eurocook00brow_0093	1
+eurocook00brow_0096	0
+eurocook00brow_0099	0
+eurocook00brow_0117	0
+eurocook00brow_0119	1
+eurocook00brow_0123	1
+eurocook00brow_0128	1
+eurocook00brow_0153	1
+
+panamacanalrevie1978pana_0019	0
+panamacanalrevie1978pana_0032	0
+panamacanalrevie1978pana_0035	1
+panamacanalrevie1978pana_0037	1
+
+invalidsownbook00custgoog_0012	0
+invalidsownbook00custgoog_0013	0
+invalidsownbook00custgoog_0067	1
+invalidsownbook00custgoog_0069	1
+
+khakikookbookcol00core_0010	0
+khakikookbookcol00core_0011	0
+khakikookbookcol00core_0016	0
+khakikookbookcol00core_0029	1
+khakikookbookcol00core_0034	1
+khakikookbookcol00core_0040	1
+khakikookbookcol00core_0065	1
+
+lakeforestcolleg33lake_0010	0
+lakeforestcolleg33lake_0013	0
+lakeforestcolleg33lake_0025	0
+lakeforestcolleg33lake_0040	0
+lakeforestcolleg33lake_0042	0
+lakeforestcolleg33lake_0045	0
+lakeforestcolleg33lake_0047	0
+
+armorialfamilies02foxd_0017	0
+armorialfamilies02foxd_0374	0
+armorialfamilies02foxd_0378	0
+armorialfamilies02foxd_0401	0
+armorialfamilies02foxd_0415	0
+armorialfamilies02foxd_0422	0
+
+genealogyofbliss00blis_0009	0
+genealogyofbliss00blis_0010	0
+genealogyofbliss00blis_0011	0
+genealogyofbliss00blis_0019	0
+genealogyofbliss00blis_0026	0
+
+filmtechniqueact00pudo_0008	0
+filmtechniqueact00pudo_0023	0
+filmtechniqueact00pudo_0030	0
+filmtechniqueact00pudo_0161	0
+filmtechniqueact00pudo_0130	0
+
+#NEW AS OF 6/17/16; these are false positives from 500
+
+extractsfromlett02mathiala_0435	0
+extractsfromlett02mathiala_0436	0
+
+foragecropsother00shawrich_0263	0
+
+yearincoalmine00husbrich_0195	0
+
+yorkbens00bensuoft_0001	0
+yorkbens00bensuoft_0005	0
+
+worksoffrancisbe103beauuoft_0379	0
+worksoffrancisbe103beauuoft_0384	0
+worksoffrancisbe103beauuoft_0385	0
+
+workscontaining01swifuoft_0518	0
+workscontaining01swifuoft_0520	0
+workscontaining01swifuoft_0521	0
+workscontaining01swifuoft_0538	0
+
+
+wisonsinstatelibr07durrrich_0006	0
+wisonsinstatelibr07durrrich_0658	0
+wisonsinstatelibr07durrrich_0659	0
+
+woodrowwilsonasi00tumurich_0236	0
+
+ordinarypeople00rossrich_0105	0
+ordinarypeople00rossrich_0109	0
+ordinarypeople00rossrich_0111	0
+ordinarypeople00rossrich_0115	0
+ordinarypeople00rossrich_0117	0
+
+goodroadsyearboo02washrich_0378	0
+goodroadsyearboo02washrich_0441	0
+goodroadsyearboo02washrich_0442	0
+goodroadsyearboo02washrich_0446	0
+goodroadsyearboo02washrich_0450	0
+goodroadsyearboo02washrich_0451	0
+
+gaseousfuelinclu00thwarich_0046	0
+gaseousfuelinclu00thwarich_0049	0
+gaseousfuelinclu00thwarich_0054	0
+gaseousfuelinclu00thwarich_0087	0
+
+geniuspotter00pottiala_0466	0
+geniuspotter00pottiala_0467	0
+
+fundamentalsinme00kenniala_0209	0
+fundamentalsinme00kenniala_0210	0
+fundamentalsinme00kenniala_0215	0
+
+gardenspastprese00davirich_0268	0
+
+freemasonryinhol00morriala_0265	0
+freemasonryinhol00morriala_0524	0
+
+friendlyyear00vandiala_0218	0
+
+foregoneconclusi00howerich_0279	0
+
+formallogicorthe00demouoft_0018	0
+formallogicorthe00demouoft_0019	0
+formallogicorthe00demouoft_0112	0
+
+favoriterhymesof00newyiala_0071	0
+favoriterhymesof00newyiala_0087	0
+favoriterhymesof00newyiala_0120	0
+favoriterhymesof00newyiala_0133	0
+
+#new recipes as of 6/17/16 (more from prev cookbooks)
+#added in above with its friends/matching book :)
+
+#new as of 6/24/16
+adventuresofyoun00biariala_0361	0
+adventuresofyoun00biariala_0367	0
+adventuresofyoun00biariala_0581	0
+
+atsunsetjulia00howerich_0143	0
+
+armynursecivil00rhodrich_0022	0
+armynursecivil00rhodrich_0023	0
+armynursecivil00rhodrich_0024	0
+
+appleblossoms00eastrich_0009	0
+appleblossoms00eastrich_0091	0
+appleblossoms00eastrich_0141	0
+appleblossoms00eastrich_0240	0
+
+archaeologiaormi66sociuoft_0091	0
+archaeologiaormi66sociuoft_0149	0
+archaeologiaormi66sociuoft_0153	0
+archaeologiaormi66sociuoft_0157	0
+archaeologiaormi66sociuoft_0179	0
+archaeologiaormi66sociuoft_0403	0
+archaeologiaormi66sociuoft_0405	0
+archaeologiaormi66sociuoft_0406	0
+archaeologiaormi66sociuoft_0407	0
+archaeologiaormi66sociuoft_0409	0
+archaeologiaormi66sociuoft_0412	0
+
+anintroductionto00gayluoft_0258	0
+anintroductionto00gayluoft_0178	0
+anintroductionto00gayluoft_0174	0
+anintroductionto00gayluoft_0176	0
+anintroductionto00gayluoft_0172	0
+anintroductionto00gayluoft_0173	0
+anintroductionto00gayluoft_0163	0
+anintroductionto00gayluoft_0250	0
+anintroductionto00gayluoft_0251	0
+
+africadiscovery02wienrich_0125	0
+africadiscovery02wienrich_0131	0
+africadiscovery02wienrich_0132	0
+africadiscovery02wienrich_0133	0
+
+cabbageskings00henriala_0051	0
+cabbageskings00henriala_0002	0
+cabbageskings00henriala_0045	0
+cabbageskings00henriala_0047	0
+cabbageskings00henriala_0053	0
+
+compressedair00harrrich_0073	0
+compressedair00harrrich_0072	0
+compressedair00harrrich_0103	0
+compressedair00harrrich_0027	0
+
+coloredgirlsboys00harrrich_0010	0
+coloredgirlsboys00harrrich_0103	0
+coloredgirlsboys00harrrich_0108	0
+coloredgirlsboys00harrrich_0116	0
+coloredgirlsboys00harrrich_0114	0
+coloredgirlsboys00harrrich_0113	0
+coloredgirlsboys00harrrich_0102	0
+
+diaryofmyhoneymo00newyiala_0077	0
+diaryofmyhoneymo00newyiala_0078	0
+diaryofmyhoneymo00newyiala_0225	0
+diaryofmyhoneymo00newyiala_0213	0
+diaryofmyhoneymo00newyiala_0226	0
+diaryofmyhoneymo00newyiala_0234	0
+
+cyanidepracticej00jamerich_0090	0
+cyanidepracticej00jamerich_0088	0
+cyanidepracticej00jamerich_0089	0
+cyanidepracticej00jamerich_0093	0
+cyanidepracticej00jamerich_0096	0
+cyanidepracticej00jamerich_0099	0
+
+elementaryapplie00morlrich_0213	0
+elementaryapplie00morlrich_0215	0
+elementaryapplie00morlrich_0219	0
+elementaryapplie00morlrich_0228	0
+elementaryapplie00morlrich_0248	0
+elementaryapplie00morlrich_0258	0
+elementaryapplie00morlrich_0260	0
+elementaryapplie00morlrich_0294	0
+
+elementaryscienc00couliala_0002	0
+elementaryscienc00couliala_0026	0
+elementaryscienc00couliala_0027	0
+elementaryscienc00couliala_0030	0
+elementaryscienc00couliala_0031	0
+elementaryscienc00couliala_0046	0
+elementaryscienc00couliala_0047	0
+elementaryscienc00couliala_0054	0
+elementaryscienc00couliala_0088	0
+elementaryscienc00couliala_0136	0
+elementaryscienc00couliala_0138	0
+elementaryscienc00couliala_0145	0
+elementaryscienc00couliala_0150	0
+elementaryscienc00couliala_0151	0
+elementaryscienc00couliala_0153	0
+elementaryscienc00couliala_0154	0
+elementaryscienc00couliala_0155	0
+elementaryscienc00couliala_0174	0
+elementaryscienc00couliala_0177	0
+elementaryscienc00couliala_0178	0
+elementaryscienc00couliala_0214	0
+elementaryscienc00couliala_0217	0
+elementaryscienc00couliala_0229	0
+
+essayoncultivati00moneiala_0156	0
+essayoncultivati00moneiala_0097	0
+essayoncultivati00moneiala_0159	0
+essayoncultivati00moneiala_0162	0
+essayoncultivati00moneiala_0167	0
+essayoncultivati00moneiala_0168	0
+essayoncultivati00moneiala_0192	0
+
+farmerlord00hepwrich_0196	0
+farmerlord00hepwrich_0153	0
+farmerlord00hepwrich_0012	0
+farmerlord00hepwrich_0013	0
+farmerlord00hepwrich_0209	0
+farmerlord00hepwrich_0210	0
+
+handbookofnatura00boucrich_0047	0
+handbookofnatura00boucrich_0024	0
+handbookofnatura00boucrich_0025	0
+handbookofnatura00boucrich_0026	0
+handbookofnatura00boucrich_0250	0
+handbookofnatura00boucrich_0251	0
+handbookofnatura00boucrich_0252	0
+handbookofnatura00boucrich_0253	0
+handbookofnatura00boucrich_0254	0
+
+lionandthemouse00kleirich_0089	0
+lionandthemouse00kleirich_0080	0
+lionandthemouse00kleirich_0083	0
+lionandthemouse00kleirich_0086	0
+lionandthemouse00kleirich_0087	0
+lionandthemouse00kleirich_0091	0
+lionandthemouse00kleirich_0092	0
+
+manualofelementa00fownrich_0385	0
+manualofelementa00fownrich_0380	0
+manualofelementa00fownrich_0675	0
+manualofelementa00fownrich_0677	0
+manualofelementa00fownrich_0679	0
+manualofelementa00fownrich_0674	0
+manualofelementa00fownrich_0676	0
+manualofelementa00fownrich_0678	0
+
+marketgardening00yeawrich_0079	0
+marketgardening00yeawrich_0078	0
+
+plantationrubber00whitrich_0372	0
+plantationrubber00whitrich_0376	0
+plantationrubber00whitrich_0378	0
+plantationrubber00whitrich_0379	0
+plantationrubber00whitrich_0373	0
+plantationrubber00whitrich_0374	0
+plantationrubber00whitrich_0375	0
+plantationrubber00whitrich_0437	0
+plantationrubber00whitrich_0439	0
+plantationrubber00whitrich_0445	0
+
+vegetablefatsoil00andrich_0291	0
+vegetablefatsoil00andrich_0293	0
+vegetablefatsoil00andrich_0294	0
+vegetablefatsoil00andrich_0295	0
+vegetablefatsoil00andrich_0296	0
+vegetablefatsoil00andrich_0297	0
