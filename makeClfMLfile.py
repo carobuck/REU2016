@@ -1,3 +1,6 @@
+"""
+Can use this script to make ML file for prediction (adds a 1, but is ignored later in classification)
+"""
 from __future__ import print_function #need this to print to file
 
 outf=open('MLfile_natHist2','w') #open file for machine learning output

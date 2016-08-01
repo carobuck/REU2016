@@ -1,5 +1,7 @@
-#SCRIPT JUST TO PREDICT BOOKS (USES IMPORTED MODEL FROM RAND FOREST CLF)
-
+"""
+SCRIPT JUST TO PREDICT BOOKS (USES IMPORTED/pickled MODEL FROM RAND FOREST CLF)
+Predicts either y/n (learns a cutoff point with .predict) or gives confidences/% recipe for pages (using .predict_proba)
+"""
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
@@ -13,13 +15,12 @@ from sklearn.datasets import load_svmlight_file #import command for using my svm
 from sklearn import ensemble #need for randomForestClassifier
 import pickle
 
-clf=pickle.load(open("saveModel.p","rb"))
+clf=pickle.load(open("saveModel.p","rb")) #original classifier
 clf2=pickle.load(open("saveModel_2clf.p","rb"))	#load learned model in 2nd classifier
-
+												#"enhanced" classifier; same features as original, just with more training data
 
 #open a file to record names of pages classified as recipes
-#outf=open('clfAsRecipe','w') #WANT 'W' OR 'A' FOR THIS?!?! WRITE OR APPEND??
-outf=open('/home/cbuck/percentClfAsRecipe_2clf','w') #save in home directory
+outf=open('FIXED_data_predictions','w') 
 
 #process function runs model over lines (bk pages) and predicts if they have recipe
 def process(lines):
@@ -32,7 +33,6 @@ def process(lines):
 		arr=line.strip().split('\t')
 		for i in range(len(arr[1:])):
 			p.append(float(arr[i+1]))
-			#pgs.append(' ') #doesn't like this string...
 		#pgs.append('\n') #new line (make 2d array???)	<--for sklearn, can give predict a numpy matrix (2d arr), or can give a python list of list, which is what I do
 		pgs += [p]
 		names.append(arr[0])
@@ -51,7 +51,7 @@ def process(lines):
 	return(rec)
 
 #trying to get only 1000 lines at a time from giant file...
-with open("/home/cbuck/some_features") as bigF:
+with open("extract_500poemsProteus") as bigF:
 	afew = []
 	recipes=0
 	for idx, line in enumerate(bigF):
@@ -67,25 +67,3 @@ with open("/home/cbuck/some_features") as bigF:
 	#process(afew); #process/deal with last few lines in file (that are leftover/not more than 1000 or whatever cutoff is for len(afew))
 	print(recipes) #print total # of pages flagged as recipe
 	
-
-
-
-#THESE LINES MESS AROUND WITH TRYING TO GET SOME SORT OF RANKING...NOT SURE WORKS..
-#score=clf2.predict_proba(bk500X)
-#print(score)
-#percentRecipe=score[:,0]
-
-#for idx, [a,b] in enumerate(score):
-#	print(idx, a,b)
-#print(percentRecipe)
-
-
-
-#now get a random sample out of the predicted 100% recipes (store in list: randomRec); set replace=False so don't get duplicates
-#randomRec=np.random.choice(rec100,30,replace=False) 
-#print(randomRec)
-
-
-
-
-

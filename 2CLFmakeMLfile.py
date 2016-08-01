@@ -1,5 +1,9 @@
-#THIS SCRIPT IS FOR MAKING ML FILE FROM STRATIFIED SAMPLE TRUTH DATA FROM RUNNING ON CLUSTER
+"""
+THIS SCRIPT IS FOR MAKING ML FILE FROM STRATIFIED SAMPLE 
+TRUTH DATA FROM RUNNING ON CLUSTER
 
+This was used to make enhanced classifier (same features as original, just more training data)
+"""
 
 #program to combine training data (from file like proseVsOther) and features file of book (output of extract_book.py)
 from __future__ import print_function #need this to print to file
@@ -38,12 +42,11 @@ print(judgmentByPageId)
 outf=open('MLfile_cluster_truth','w') #open file for machine learning output
 
 with open('/home/cbuck/some_features') as f:
-	for idx, line in enumerate(f):  #add in these lines so can see thing is 
+	for idx, line in enumerate(f):  #add in these lines so can see code is running
 		if idx % 20000 == 0:
 			print(idx)
-	 	#strip() gets rid of newlines (on right and left)
 		arr=line.strip().split('\t')
-		#print(arr)
+		#print(arr) #debugging
 		if arr[0] in judgmentByPageId:
 			featureStr=judgmentByPageId[arr[0]] #put judgment in featureStr
 			for i in range(len(arr[1:])): #len is getting # of features

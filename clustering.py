@@ -1,7 +1,13 @@
-#script to try clustering output from running 2clf on 100k bks from cluster
+"""
+script to try clustering output from running 2clf (enhanced classifier w/ more training data) on 100k bks from cluster
 
-#using this guy's code/assistance: https://github.com/brandomr/document_cluster/blob/master/cluster_analysis.ipynb
+using this guy's code/assistance: https://github.com/brandomr/document_cluster/blob/master/cluster_analysis.ipynb
 
+This script will cluster the recipes, but it is hard to evaluate what it clusters the recipes on
+this needs work if clustering the recipes found in books is a goal (perhaps try other clustering algorithms?)
+
+This script makes a TFIDF matrix of the words in the files (in recipes) and attempts to cluster using K-Means
+"""
 from __future__ import print_function #need this to print  
 import string
 
@@ -29,7 +35,7 @@ recipes=[] #list of lists w/ all words from all the pages
 rec=[]  #temp recipes
 #fullPathRec=[]
 
-#try taking out cook and measure words from recipes (sorta forcing them into stop words)
+#try taking out cook and measure words from recipes (sort of forcing them into stop words)
 with open('cookingWords.txt') as f1:
 	for line in f1:
 		line=line.strip() #strip newlines/blanks at beg/end of line
@@ -52,50 +58,47 @@ my_stop_words=text.ENGLISH_STOP_WORDS.union(my_words)
 for word in my_stop_words:
 	word=stemmer.stem(word)
 
-files=os.listdir('/home/cbuck/recipePages') #use idx to keep size down; only read in certain # of files so don't crash computer!
+punctuation_set = set(string.punctuation)
+
+files=os.listdir('/home/cbuck/recipePages') #use idx to only read in a few lines for debugging, or to see that code is still running
 for idx, file in enumerate(files):
-	if idx<10:
-		#print(idx)
-		#print(file)
-		fTitles.append(file)
-		rec=open('/home/cbuck/recipePages/'+file).read().split('\n')
-		"""
-		for r in rec:
-			if r not in cookWords:
-				if r not in measures:
-					#print(r)
-					recipes.append(r)
-		#fullPathRec.append('/home/cbuck/recipePages/'+file)
-		"""
-		recipes.append(rec)
+	if idx%2000==0:
+		print(idx)
+		#print(file) #debugging
+	fTitles.append(file)
+	rec=open('/home/cbuck/recipePages/'+file).read()
+	""" #rougher version of measure/cooking stop words; commented out because have union above
+	for r in rec:
+		if r not in cookWords:
+			if r not in measures:
+				#print(r)
+				recipes.append(r)
+	#fullPathRec.append('/home/cbuck/recipePages/'+file)
+	"""
+	recipe_cleaned = ''.join(ch for ch in rec if ch not in punctuation_set)
+	recipes.append(recipe_cleaned.lower().split())
 
 print(len(fTitles))
 print(len(recipes)) 
 #print(fullPathRec)
-
-#make table for excluding punctuation
-table = str.maketrans(",.","  ")
-print(table)
+randomSample=np.random.choice(fTitles,100,replace=False) 
+print(randomSample)
 
 #STEMMING FUNCTION (DON'T NEED TO TOKENIZE, B/C ALREADY HAVE SINGLE WORDS)
 def stem(text): #text already tokenized I think...
 	filtered_tokens=[] #filter out any words not containing letters (ie #'s, pure punc)
 	for token in text:
 		if re.search('[a-zA-Z]', token):
-			token=token.casefold()
 			filtered_tokens.append(token)
-	temp_stems = [stemmer.stem(t) for t in filtered_tokens] #stem tokens
-	stems = [s.translate(table) for s in temp_stems]
+	stems = [stemmer.stem(t) for t in filtered_tokens] #stem tokens
 	return stems
 
 def justToken(text): #this just filters out #'s and pure punc; need so indexes of stemmed words line up w/ orig versions
-	temp_filtered_tokens=[] #filter out any words not containing letters (ie #'s, pure punc)
+	filtered_tokens=[] #filter out any words not containing letters (ie #'s, pure punc)
 	for token in text:
 		#if isalpha(token):
 		if re.search('[a-zA-Z]', token):
-			token=token.casefold()
-			temp_filtered_tokens.append(token) #INCL STRING.PUNC HERE in translate?? GET ERROR FOR TOO MANY ARG TO .TRANSLATE, BUT THAT'S WHAT EX DID ONLINE..
-	filtered_tokens = [t.translate(table) for t in temp_filtered_tokens]
+			filtered_tokens.append(token) #INCL STRING.PUNC HERE in translate?? GET ERROR FOR TOO MANY ARG TO .TRANSLATE, BUT THAT'S WHAT EX DID ONLINE..
 	return filtered_tokens
 
 #NOW MAKE 2 VOCABULARIES, FOR ALL WORDS IN PAGES; ONE STEMMED AND ONE NOT. 
@@ -133,11 +136,11 @@ dist=1-cosine_similarity(tfidf_matrix)
 
 #NOW ON TO CLUSTERING FOR FUNSIES
 cwfile=open('clusterWords','w')
-num_clusters=5 #play around w/ this for kmeans
+num_clusters=50 #play around w/ this for kmeans
 km=KMeans(n_clusters=num_clusters)
 km.fit(tfidf_matrix)
 clusters=km.labels_.tolist()
-print(clusters)
+
 
 recipePages={'title':fTitles,'recipe':recipes,'cluster':clusters}
 frame=pd.DataFrame(recipePages, index=[clusters],columns=['title','recipe','cluster'])
@@ -148,30 +151,26 @@ order_centroids=km.cluster_centers_.argsort()[:,::-1]
 for i in range(num_clusters):
 	print("cluster %d words:" %i, end='')
 	print("cluster %d words:" %i, end='',file=cwfile)
+
+	word_ids = order_centroids[i, :6]
+	print(word_ids)
+	print([terms[i] for i in word_ids])
 	for ind in order_centroids[i, :6]: #get top 6 words for each cluster
 		print(' %s' % vocab_frame.ix[terms[ind].split(' ')].values.tolist()[0][0].encode('utf-8','ignore'),end=',',file=cwfile)
 	print('\n',file=cwfile)
 	print('\n')
 	print("Cluster %d titles:" % i, end='')
 	print("Cluster %d titles:" % i, end='',file=cwfile)
-	for title in frame.ix[i]['title'].values.tolist():
-		print(' %s,' % title, end='',file=cwfile)
-		print('\n',file=cwfile)
+	#print(frame.ix[i])
+	#for title in frame.ix[i]['title'].values.tolist():
+		#print(' %s,' % title, end='',file=cwfile)
+		#print('\n',file=cwfile)
 
 """
 play around with # of clusters; try to print more/all words from a cluster??
 also, change max/min_df to try to get different/better results?? run over more recipes too...
-^^^how many recipes can I load in w/out crashing??
 
-
-also, with union stop words WEIRD STUFF HAPPENING WITH STEMMING???
-FOR CLUSTER TOP TERMS, PRINT OUT STEMMED VERSIONS TO SEE IF SOMETHING WEIRD HAPPENING??
-^^PLAY AROUND W/ AND ASK JOHN MAYBE???
-
-try different clustering alg??
-
-
-ALSO, LOOK AT NOTEPAD FOR WHAT TO DO !!!
+Not sure the stemming/stop words is working as it should (some still occasionally show up in clusters)
 
 #HELPFUL SITES:
 # https://github.com/brandomr/document_cluster/blob/master/cluster_analysis.ipynb

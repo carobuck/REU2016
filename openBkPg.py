@@ -4,13 +4,22 @@ script to open muliple pages in taree single viewer at once
 """
 import webbrowser
 
-to_judge = [ 'newworldsfaircoo00port_0417',
- 'memoirsofliterar01lite_0072',
-'cu31924001742083_0034',
- 'cu31924090155767_0425',
-'candymakingathom00wrig_0076',
- 'mathematicalcon00laffgoog_0062',
-'cu31924001742083_0016']
+to_judge = [ 'compendiumofcook01blak_0220',
+ 'cu31924087318436_0239',
+ 'cu31924085641656_0169',
+ 'cu31924086713777_0172',
+ 'centurycookbook00arnoiala_0272',
+ 'cu31924001803877_0083',
+ 'cu31924087257873_0478',
+ 'cu31924085803215_0012',
+ 'cu31924094662511_0076',
+ 'cu31924001345507_0082',
+'modernpracticalc00broo_0050',
+ 'cu31924087319681_0203',
+ 'cu31924001803877_0145',
+'mrsrorersphilade00rorerich_0398',
+'cu31924003571365_0112',
+'cu31924003584061_0226']
 
 for x in to_judge:
     pos = x.rfind('_')

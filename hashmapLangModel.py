@@ -1,4 +1,10 @@
-#script to make dict (hashmap) for language modeling; common words in recipes
+"""
+script to make dict (hashmap) for language modeling; common words in recipes
+Did NOT implement this as a feature in model (used cook/measure words instead)
+Perhaps this could be an improvement/something to try in future work
+*this script is not fully functional and requires more work*
+Tried a few different things; have some additional ideas at the bottom of script
+"""
 from __future__ import print_function #need this to print to file
 import xml.etree.ElementTree as ET #need for parsing XML file of book
 import string #need for testing if punctuation in word
@@ -23,7 +29,7 @@ def languageModel(xmlBk):
 			word=tag.text
 			if word in langModel:
 				langModel[word]+=1
-				#totalWords+=1 #INCREMENT HERE?!?! WON'T GET UNIQUE WORDS
+				#totalWords+=1 #INCREMENT HERE? WON'T GET UNIQUE WORDS
 			else:
 				langModel[word]=1
 				totalWords+=1
@@ -45,7 +51,7 @@ def languageModel2(xmlBk):
 			word=stemmer.stem(word)
 			if word in langModel:
 				langModel[word]+=1
-				#totalWords+=1 #INCREMENT HERE?!?! WON'T GET UNIQUE WORDS
+				#totalWords+=1 #INCREMENT HERE? WON'T GET UNIQUE WORDS
 			else:
 				langModel[word]=1
 				totalWords+=1
@@ -98,14 +104,9 @@ def scoreWords(langModel, words): #would words be a whole line??? then lang mode
 		score += scoreWord(langModel, w)
 	return score / len(words)
 
-#SHOULD i DO SOME STEMMING BEFORE TESTING IF WORD IN DICT? THAT WAY DON'T HAVE 
-# REPEATS LIKE ingredient and ingredientS....???? ok since do stemming in learning alg/features too???
-# ********try with and without stemming**********
 
-
-#*****************************
-#train/make lang model based on NYTimes csv data, break up food names into single words (split on spaces!!) and build prob model based on that
-#maybe include other foods/ingredient lists also?? scrape off internet
-#maybe make several lang models, for foods and measureWords??--> or need to combine into one for whole line probability of having food and measure words
-
-# ^^ will this even make it better? won't pull up things with #'s and/or food and measureWords??
+"""
+train/make lang model based on NYTimes csv data, break up food names into single words (split on spaces!!) and build prob model based on that
+maybe include other foods/ingredient lists also?? scrape off internet
+maybe make several lang models, for foods and measureWords??--> or need to combine into one for whole line probability of having food and measure words?
+"""

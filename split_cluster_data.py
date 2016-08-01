@@ -1,4 +1,6 @@
-
+"""
+Script to split cluster truth data (wanted some for training and some for testing)
+"""
 outf=open('MLfileRecipe_train_Wcluster','w')
 outf2=open('testML_cluster','w')
 
@@ -8,7 +10,7 @@ with open('MLfile_cluster_truth') as f:#open file for machine learning output
 			print(line) 
 			print(line,file=outf2)
 		else:
-			print("blah")
+			print("blah") #debugging
 			print(line,file=outf)
 
 

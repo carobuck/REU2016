@@ -1,5 +1,8 @@
-#**RANDOM FOREST REGRESSION can learn and predict model with regression
-#use this rather than randForestClf to try to get ranked list output****
+"""
+****Did not use this classifier for final model (Random forest classifier performed best)
+**RANDOM FOREST REGRESSION can learn and predict model with regression
+#maybe use this rather than randForestClf to try to get ranked list output****
+"""
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -52,16 +55,11 @@ print ("Optimal Parameters:", clf.best_params_)
 Yhat=clf.predict(Xtest) #expected outcomes, using the model
 #Yhat=clf.predict(Xlearn) #see if it can predict the training ones right at all (if not, 3 features are currently garbage)
 print(Yhat)
-print('\n'+'\n'+'poooop'+'\n')
 
 #try adding in function to score data points, to see how far off things are from being marked as recipe or not
 score=clf.score(Xtest,Ytest)
 print(score)
 
-print('\n'+'\n'+'poooop'+'\n')
-
-#confusion=confusion_matrix(Ytest,Yhat)
-#print(confusion)
 
 #try to print names of pages that were WRONGLY predicted
 sumWrong=0
@@ -75,7 +73,6 @@ for i in range(len(names_test)):
 print(sumWrong,float(sumWrong)/float(len(names_test))) #CHANGED NAMES_TEST TO NAMES_LEARN
 
 
-print('\n'+'\n'+'poooop'+'\n')
 
 
 #print info (scores and feature values) about correct predictions
@@ -93,7 +90,7 @@ print('\n'+'\n'+'poooop'+'\n')
 
 clf2 = clf  #DON'T NEED TO PICKLE; CAN JUST STORE IN ANOTHER VARIABLE
 bk500X,ytrash=load_svmlight_file('MLfile_FIXED_data')
-#print(bk500X,ytrash)
+#print(bk500X,ytrash) #debugging
 predict500=clf2.predict(bk500X)
 #score=clf2.predict_proba(bk500X)
 #print(score)
@@ -123,11 +120,3 @@ print(ranked) #print top 100 "recipes"
 print(recipes)
 print(len(predict500))
 
-
-
-
-
-#THIS ALG DOESN'T LIKE THIS....
-#report error rate
-#Err=1-metrics.jaccard_similarity_score(Yhat,Ytest) #CHANGED YTEST TO YLEARN
-#print("Training Error Rate is: %.4f"%(Err,))

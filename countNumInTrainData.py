@@ -1,3 +1,7 @@
+"""
+This is supplementary script just counts the number of 1/0's in truth data
+This can also be found in other scripts
+"""
 from __future__ import print_function #need this to print to file
 
 non=0

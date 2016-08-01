@@ -1,3 +1,8 @@
+"""
+This is linear/SVM machine learning script. Not used for model because randomForest Classifier worked better for predicting
+
+"""
+
 #MACHINE LEARNING AND PLOTTING SCRIPT
 #ON THIS SCRIPT, CAN GO BACK AND FORTH BETWEEN YTEST AND YLEARN, TO SEE HOW WELL MACHINE PREDICTS FOR XTEST VS XLEARN (want xlearn to be perfect...)
 
@@ -102,7 +107,6 @@ for i in range(len(names_test)):
 print(sumWrong,float(sumWrong)/float(len(names_test))) #CHANGED NAMES_TEST TO NAMES_LEARN
 
 
-print('\n'+'\n'+'poooop'+'\n')
 #print info (scores and feature values) about correct predictions
 #for i in range(len(names_test)):
 #	if Ytest[i]==Yhat[i]:

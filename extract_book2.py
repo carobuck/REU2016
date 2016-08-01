@@ -1,3 +1,8 @@
+"""
+This is main script to extract all features from books 
+(all books/pages for training and prediction must go through this)
+"""
+
 #import necessary libraries
 from __future__ import print_function #need this to print to file
 import xml.etree.ElementTree as ET #need for parsing XML file of book
@@ -36,10 +41,8 @@ def parsePrint(xmlBk,f,cookWords,measures,foods):
 				];
 			print(x+'\t'+'\t'.join([str(ft) for ft in features]),file=f)
 
-			#print(x+'\t'+str(numDigits(p))+'\t'+str(scaledPunc(p,avgP))+'\t'+str(scaledWords(p,avgW))+'\t'+str(numCookWords(p,cookWords))+'\t'+str(numMeasureWords(p,measures))+'\t'+str(upperToTotalLetters(p))+'\t'+str(moreThan10(p))+'\t'+str(pgLocation(count,pages))+'\t'+str(ingPhraser(p,foods,measures)),file=f)
-			#print(x+'\t'+str(numDigits(p))+'\t'+str(punct(p))+'\t'+str(numCookWords(p))+'\t'+str(numMeasureWords(p))+'\t'+str(pgLocation(count,pages))+'\t'+str(upperToTotalLetters(p)),file=f)
-			#print(x+'\t'+str(punct(p))+'\t'+str(scaledWords(p,pages))+'\t'+str(numCookWords(p))+'\t'+str(numMeasureWords(p))+'\t'+str(pgLocation(count,pages))+'\t'+str(upperToTotalLetters(p)),file=f)
-
+#THIS FEATURE NOT USED IN MODEL; did not see an improvement in smaller test set with it.
+#Perhaps in future implement again to predict on larger collection of books
 #this func returns proportion of number words on a page
 #number_words is global constant; hopefully it will acct for 1-100s
 NUMBER_WORDS = set(['one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety','hundred'])
@@ -80,6 +83,7 @@ def numDigits(page):
 		return float(digPunc)/len(pg) #return proportion of # digits to # words on pg
 
 #returns proportion of punctuation to words on a single page
+#used in scaledPunc (actual feature function)
 def punct(page):
 	punc=0
 	pg=page.findall(".//WORD")
@@ -93,13 +97,14 @@ def punct(page):
 		return float(punc)/len(pg)
 
 #returns average proportion of punctuation to words on page for whole book
+#used in scaledPunc (actual feature function)
 def avgPunc(book):
 	sumPunc=0
 	for p in book:
 		sumPunc+=punct(p)
 	return float(sumPunc)/len(book)
 
-#returns scaled proportion of punct to words (scaled to average punctuation for whole book)
+#returns scaled proportion of punct to words for a page (scaled to average punctuation for whole book)
 def scaledPunc(page,avg):
 	thisPg=punct(page)
 	return(thisPg-avg)/avg
@@ -197,9 +202,10 @@ def moreThan10(page):
 		else:
 			return 0	
 
-#returns # of 'ingredient phrases' on a page (# of lines that have both a food word and a measure word)
-#MODIFY THIS SO CHECKS IF GET MEASURE+[OF]+FOOD WORD
-#modified so checks single word of foods
+#returns proportion of 'ingredient phrases' on a page (# of lines that have both a food word and a measure word)
+# CHECKS IF GET MEASURE+[OF]+FOOD WORD
+#This feature could be improved with a more extensive list of foods (this model used ingredient data stripped from NY Times)
+#*Feature only counts one ingredient phrase per line*
 def ingPhraser(page,foods,measures):
 	ingPhrase=0
 	lines=page.findall(".//LINE")
@@ -219,7 +225,7 @@ def ingPhraser(page,foods,measures):
 				if x in foods: 
 					ingPhrase+=1 # have MEASURE + OF + FOOD phrase
 					#print(phrase) #debugging
-					break  #does this break out of the line??
+					break  
 				else:
 					break #if next word isn't a food, want to break to next line
 			if unitWord:
@@ -236,13 +242,11 @@ def ingPhraser(page,foods,measures):
 			if x in measures:
 				unitWord=True
 				continue
-	#return(ingPhrase)
-	return float(ingPhrase)/len(lines)		
+	return float(ingPhrase)/len(lines) #returns proportion of ingredient phrases to total # of lines on page		
 
 
 #OPEN ONE OUTPUT FILE FOR HOWEVER MANY BOOKS TO RUN THRU
-f=open('extract_natHist2','w')
-#FOR EACH BOOK, SEND XML AND f (FILE STREAM) and 3 other files
+f=open('extract_500poemsProteus','w')
 
 #open 3 other files once and then send to each of the books (faster/more efficient)
 with open('cookingWords.txt') as f1:
@@ -279,31 +283,25 @@ with open('nyt-ingredients-snapshot-2015.csv') as csvfile:
 			foods.remove(food)
 		food=stemmer.stem(food) #stem all the foods (for differences like berry vs berries)	
 	foods.remove('of')	
-	foods.remove('the')	#of, the, be prove problematic...but doesn't entirely work to remove?? 
-	foods.remove('be')  #something else must be going on...????
+	foods.remove('the')	#of, the, be prove problematic...doesn't remove all instances
+	foods.remove('be')  
 
-files=os.listdir('/home/cbuck/xmlRecipesBooks')
-#print(files)
+files=os.listdir('/home/cbuck/poems')
+#print(files) #debugging
 
-#for file in files:
-#	print(file)
-#	parsePrint('/home/cbuck/xmlRecipesBooks/'+file,f,cookWords,measures,foods)
+for file in files:
+	print(file)
+	parsePrint('/home/cbuck/poems/'+file,f,cookWords,measures,foods)
 
-#parsePrint('foodNewsletter.xml',f)
-#parsePrint('schoolfoodservic00mass_djvu.xml',f)
-#parsePrint('CAT31304297_djvu.xml',f)
-#parsePrint('CAT31293900_djvu.xml',f)
-#parsePrint('schfoodservic7277mont_djvu.xml',f)
-#parsePrint('CAT31303133_djvu.xml',f)
-#parsePrint('CAT81760442_djvu.xml',f)
+#If just have a single book/XML file:
+#parsePrint('naturalhistory84newy_djvu.xml',f,cookWords,measures,foods)
 
-parsePrint('naturalhistory84newy_djvu.xml',f,cookWords,measures,foods)
 #CLOSE OUTPUT FILE AFTER RUN ALL THE BOOKS
 f.close()
 
 
 
-#ADDING SOME STUFF BELOW FOR IMPLEMENTING ON PARALLEL COMPUTING...to read in files like John showed me with full book path
+#ADDING SOME STUFF BELOW FOR IMPLEMENTING ON PARALLEL COMPUTING...to read in files with full book path
 #with open('INSERT FILE NAME HERE') as bkF:
 #	for line in bkF: 
 #		parsePrint(line,f,cookWords,measures,foods)

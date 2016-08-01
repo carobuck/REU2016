@@ -1,5 +1,9 @@
-#***RANDOM FOREST CLASSIFIER; says y/n with rand forest
-#harder to get 'ranked list' output for this; just weird quirk of way clf works...
+"""
+***This is classifier used for model, outperformed randomForest regression and linear SVC/linear classifiers)
+
+#***RANDOM FOREST CLASSIFIER; says y/n with .predict (computer learns cutoff) or gives confidence/% recipe with .predict_proba
+can use this script to train model, predict on books (if uncomment middle section) and get ranking/graph of feature importances
+"""
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -23,18 +27,20 @@ from sklearn.preprocessing import label_binarize
 from sklearn.multiclass import OneVsRestClassifier
 from sklearn.metrics import confusion_matrix
 
+
+import pickle
 #use this w/ sklearn's train/test split
-#X_train, y_train=load_svmlight_file("massiveTrainMLfile") #MLfileRecipe_train5 9 FEATURES; CURRENT/GOOD
+X_train, y_train=load_svmlight_file("MLfileRecipe_train5") #MLfileRecipe_train5 9 FEATURES; CURRENT/GOOD
 
 #open massive cluster + orig train data as training data, and cluster data as test data
-Xlearn, Ylearn=load_svmlight_file("MLfileRecipe_train_Wcluster")
-Xtest, Ytest=load_svmlight_file("testML_cluster")
-names_test = []
-with open('testML_cluster') as f:  #MLfile_3_features
+#Xlearn, Ylearn=load_svmlight_file("MLfileRecipe_train_Wcluster")
+#Xtest, Ytest=load_svmlight_file("testML_cluster")
+names = []
+with open('MLfileRecipe_train5') as f:  #MLfile_3_features
 	for line in f:
 		if '#' in line:
 			pos = line.index('#')
-			names_test += [line[pos:]]
+			names += [line[pos:]]
 #print(names)
 
 #Define the parameter grid 
@@ -43,7 +49,7 @@ param_grid=[{'criterion':['entropy'],'max_features':['auto'],'n_estimators':[100
 
 #Create a learning set/test set split
 #*****CAN CHANGE TO .75 IN TEST AND STILL GET 90-92% ACCURACY!!*****
-#Xlearn,Xtest,Ylearn,Ytest,names_learn,names_test = cross_validation.train_test_split(X_train, y_train,names, test_size=0.25, random_state=42)
+Xlearn,Xtest,Ylearn,Ytest,names_learn,names_test = cross_validation.train_test_split(X_train, y_train,names, test_size=0.25, random_state=42)
 #random state shuffles data so its random; then test_size takes off 25% to validate
 
 #def zeroFeature(Xlearn, fnum):
@@ -66,7 +72,7 @@ clf.fit(Xlearn,Ylearn)
 
 #make predictions using model
 Yhat=clf.predict(Xtest) #expected outcomes, using the model
-#Yhat=clf.predict(Xlearn) #see if it can predict the training ones right at all (if not, 3 features are currently garbage)
+#Yhat=clf.predict(Xlearn) #see if it can predict the training ones right at all (if not, features are currently garbage)
 Yd=clf.predict_proba(Xtest) #changed Xtest to Xlearn
 
 #print(Yd) #this gives probability for a page of being recipe or not (% rec, % not) 
@@ -81,7 +87,6 @@ print(score) #this score is accuracy for randforestclf
 #		pos+=1
 #print("Cluster-Run Accuracy: "+str(pos/float(len(Ytest))))-->2/3
 
-print('\n'+'\n'+'poooop'+'\n')
 
 confusion=confusion_matrix(Ytest,Yhat)
 print(confusion)
@@ -98,7 +103,6 @@ for i in range(len(names_test)):
 print(sumWrong,float(sumWrong)/float(len(names_test))) #CHANGED NAMES_TEST TO NAMES_LEARN
 
 
-print('\n'+'\n'+'poooop'+'\n')
 
 
 #print info (scores and feature values) about correct predictions
@@ -110,8 +114,8 @@ print('\n'+'\n'+'poooop'+'\n')
 #			print(Xtest[i])
 
 #NOW TRY TO USE MODEL TO PREDICT/IDENTIFY RECIPES IN RANDOM BOOKS
-import pickle 	
-pickle.dump(clf, open("saveModel_2clf.p","wb")) 	#Store learned model
+#import pickle 	
+#pickle.dump(clf, open("saveModel_2clf.p","wb")) 	#Store learned model
 #clf2=pickle.load(open("saveModel.p","rb"))	#load learned model in 2nd classifier
 
 #clf2 = clf #can just put in a different variable; don't need to pickle
@@ -146,20 +150,15 @@ pickle.dump(clf, open("saveModel_2clf.p","wb")) 	#Store learned model
 #print(recipes)
 #print(len(predict500))
 
-#now get a random sample out of the predicted 100% recipes (store in list: randomRec); set replace=False so don't get duplicates
-#randomRec=np.random.choice(rec100,30,replace=False) 
-#print(randomRec)
-
-
-
-
 
 #report error rate
 Err=1-metrics.jaccard_similarity_score(Yhat,Ytest) #CHANGED YTEST TO YLEARN
 print("Training Error Rate is: %.4f"%(Err,))
 
 
-#Try to get ranking of feature importances for random forest clf
+
+
+#To get ranking of feature importances for random forest clf
 importances = clf.feature_importances_
 std = np.std([tree.feature_importances_ for tree in clf.estimators_],axis=0)
 indices = np.argsort(importances)[::-1]
@@ -171,14 +170,14 @@ for f in range(Xlearn.shape[1]):
     print("%d. feature %d (%f)" % (f + 1, indices[f], importances[indices[f]]))
 
 # Plot the feature importances of the forest
+labels=['1','2','3','4','5','6','7','8','9']
 plt.figure()
 plt.title("Feature Importances")
 plt.bar(range(Xlearn.shape[1]), importances[indices],color="r", yerr=std[indices], align="center")
-plt.xticks(range(Xlearn.shape[1]), indices)
+plt.xticks(range(Xlearn.shape[1]), labels)
 plt.xlim([-1, Xlearn.shape[1]])
+#plt.set_xticklabels(labels)
 plt.show()
 
-
-#call zeroFunction for all the features
 
 	

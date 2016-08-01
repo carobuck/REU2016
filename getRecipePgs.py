@@ -1,5 +1,7 @@
-#script to extract just pages with recipes on them; store all words from those pages in file (file for each page)
-
+"""
+script to extract just pages with recipes on them; store all words from those pages in file (file for each page)
+Use files with all the words for clustering (in clustering.py script)
+"""
 
 from __future__ import print_function #need this to print to file
 import xml.etree.ElementTree as ET #need for parsing XML file of book
@@ -27,7 +29,6 @@ def getRecipePgs(xml_bk,recPgs):
 with open('/home/cbuck/percentClfAsRecipe_2clf') as f:
 	recipes=set([]) #set to store books that have recipe pgs
 	eightyFive=set([])	#set to store recipes w/ >= 85% confidence
-						#USE SET HERE B/C HASHABLE AND FASTER (?????)
 	
 	for idx, line in enumerate(f):
 		if idx%20000==0:
@@ -38,14 +39,14 @@ with open('/home/cbuck/percentClfAsRecipe_2clf') as f:
 		data=line.split('\t') #make an array out of each line in file
 		per=floor(100*float(data[2]))
 		if(per>=85):
-			eightyFive.add(data[0])
+			eightyFive.add(data[0]) #only take pages that are at least 85% confident to be recipe (precision very high here/above)
 				
 
 #getRecipePgs('/home/cbuck/detected-poems/365dessertsdesse00nels.xml',eightyFive)
 # ^^trial run with just one book (it works!! :)
 
-files=os.listdir('/home/cbuck/detected-poems')
-
+files=os.listdir('/home/cbuck/detected-poems')   #detected-poems file actually has all books w/ recipes, just misnamed
+												#give folder with all XML book files
 for file in files:
 	print(file)
 	getRecipePgs('/home/cbuck/detected-poems/'+file,eightyFive)
