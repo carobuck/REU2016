@@ -1,0 +1,45 @@
+#text file with measurements/amounts
+
+#CONVERT EVERY SCANNED WORD TO LOWER CASE BEFORE TESTING THIS
+
+bag
+box
+c
+#can #6/28: DECIDED TO TAKE THIS OUT; can is a very common word outside of cooking as well...
+clove
+cup
+dash
+drop
+g
+gal
+gallon
+gill
+gram
+inch
+jigger
+kg
+kilogram
+large
+liter
+little #common in older recipes
+measure
+mililiter
+ml
+ounce
+oz
+peck
+piece #common in older recipes
+pinch
+pint
+pound
+pt
+qt
+quantity
+quart
+size
+spoonful
+t
+tablespoon
+tbsp
+teaspoon
+tsp
