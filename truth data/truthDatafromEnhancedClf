@@ -1,0 +1,415 @@
+#truth data from stratified sampling of enhanced classifier (trained with data from output of original classifier)
+
+THESE ARE SAMPLED FROM THOSE PAGES WITH >0% RECIPE IN BOTH CLF! (2nd clf made from 1/2 cluster truth data from first clf in train, 1/2 in test to make new model) NON'S FROM FIRST CLF TREATED AS NO FOR TRAINING NEW MODEL
+
+Total: 13159515 (about 9 million fewer than marked with 1 clf)
+(trend: there are fewer pages in lower bins here, and more in higher % bins, compared to 1 clf)
+60: 5945
+70: 2948
+75: 2984
+80: 3173
+85: 3592
+90: 4272
+95: 883
+96: 908
+97: 981
+98: 1007
+99: 1227
+100: 294
+#added 6 more of same/respective confidence levels to replace the ones I had to remove because the model was trained on those pages
+1= YES, 0= NO, A=NON
+
+#there is a python script to convert words to 1 or 0; non? treated as no for model/training
+
+
+#SIXTY: 14/30 YES, 2 NON, 14 NO
+0 internationalli63compgoog_0056
+0 baldwinonheatin02baldgoog_0176
+0 modernengineeri10illgoog_0176
+1 cu31924000549919_0016
+1 cu31924000677256_0110
+0 p2physicsforuniv00carhuoft_0052
+0 dieteticsfornur00ruhrgoog_0089
+1 practicaldietet00pattgoog_0294
+0 internationalli58compgoog_0357
+0 commorganaly32allerich_0261
+A cu31924002872681_0231
+0 principleschemi03cookgoog_0301
+0 cu31924004550277_0083
+A cu31924002980591_0306
+1 patterncookbook00buttrich_0086
+1 arthurshomemaga00unkngoog_0279
+1 commonsenseinho01harlgoog_0416
+1 individualrecipe00spririch_0047
+1 newfamilyreceipt00newh_0215
+1 misscorsonspract00cors_0451
+0 cyclopediaofengi04ameriala_0094
+1 cookeryandhouse00reevgoog_0298
+1 dainties01rore_0084
+1 cu31924000524847_0140
+0 mineralogyanint01huntgoog_0509
+0 dairyingpts1to6c00corrrich_0178
+1 practicalsanitar00abel_0260
+1 mysteriestradec00bemagoog_0100
+0 makingnine00dudlgoog_0161
+0 principlesofbact00abbouoft_0111
+
+#SEVENTY: 22/30 YES, 4 NON, 4 NO
+1 cu31924085805152_0017
+1 moderndomesticc00hughgoog_0118
+A cu31924002980591_0382
+0 childrensarithm01changoog_0033
+0 chemistryofpigme00parrrich_0239
+1 capitalcookbook00will_0189
+1 choicedishesatsm00payn_0180
+1 misscorsonspract00cors_0488
+1 cu31924085806994_0148
+1 mrsrorersphilade00rorerich_0219
+1 cu31924085806994_0109
+1 cu31924085806994_0065
+1 compendiumofcook01blak_0186
+1 practicalamerica00hall_0123
+1 cu31924089588291_0080
+A cu31924087318436_0438
+0 cu31924004635573_0319
+1 cu31924003571365_0125
+1 cu31924086757774_0437
+1 cu31924001803877_0401
+1 campcookery00kephgoog_0089
+1 newhouseholddisc00mors_0285
+1 cu31924085806994_0083
+1 cu31924003522178_0210
+0 physics09stewgoog_0092
+A cu31924003199662_0088
+A mrsowenscookbook00chicrich_0451
+1 cookeryandhouse00reevgoog_0441
+1 cassellsdictiona00cass_1186
+1 helpinghandforto00drap_0619
+
+#SEV-FIVE: 27/30 YES, 3 NO
+1 cu31924086709387_0126
+1 365dessertsdesse00nels_0039
+1 colonialrecipesf00bomb_0109
+1 cu31924090155767_0213
+1 whiteribboncookb00arms_0069
+1 mrsputnamsrecei00collgoog_0133
+1 cookinginoldcro00conggoog_0097
+1 cu31924003573932_0039
+0 inelasticdesigno35univ_0299
+1 consolidatedlib02herrgoog_0289
+1 moderncookaprac00frangoog_0357
+1 newhouseholddisc00mors_0182
+1 cu31924000677256_0170
+1 cu31924003582735_0158
+1 cassellsdictiona00cass_0414
+1 mrsowenscookbook00chicrich_0177
+1 mealsonwheelscoo00willrich_0040
+1 completebreadca00unkngoog_0327
+1 practicalsanita00abelgoog_0121
+1 manualofhomemaki00vanruoft_0567
+0 normalhigherari01broogoog_0391
+1 nutritionanddie02hallgoog_0294
+1 winstoncookbookp00cram_0258
+1 cooksoraclecont00kitcgoog_0354
+1 missbeechersdome01beec_0165
+1 cu31924001803877_0381
+0 p3p4p5proceed1901inst_0564
+1 completeherbal00brow_0209
+1 mrsowenscookbook00chicrich_0221
+1 cu31924000677256_0119
+
+#EIGHTY: 26/30 YES, 4 NO
+1 cu31924090155767_0587
+1 cookeryforcommon00paynrich_0249
+1 moderndomesticc00hughgoog_0058
+0 mathematicalcon00laffgoog_0041
+1 moderncookaprac00frangoog_0474
+1 patterncookbook00buttrich_0351
+0 catalog00aava_0024
+1 compendiumofcook01blak_0118
+1 cassellsdictiona00cass_0116
+1 mackenziesfiveth02mack_0175
+1 cu31924090155767_0327
+1 cassellsdictiona00cass_0486
+1 cu31924001803877_0398
+1 cu31924084878077_0037
+1 cu31924003571365_0119
+1 peerlesspastrybo00blit_0098
+1 cu31924003587965_0695
+1 cassellsdictiona00cass_0359
+1 worldsfairrecipe00land_0008
+1 cu31924084878077_0095
+1 patterncookbook00buttrich_0317
+1 delicatefeasting00chil_0116
+1 whiteribboncookb00arms_0094
+0 principlesheati01snowgoog_0072
+1 cu31924000677256_0237
+1 commonsenseinho01harlgoog_0065
+0 mentaldevelopmen00dunh_0035
+#1 diabeticcookeryr00oppeiala_0081 #trained on, remove
+1 cu31924001803877_0550
+1 mealsonwheelscoo00willrich_0115
+1 pracdietetics00thomiala_0859
+
+#E-FIVE: 29/30 YES, 1 NO
+1 washburncrosbyco00wash_0034
+1 methodsofcanning00blitiala_0079
+1 mrsputnamsrecei00collgoog_0107
+1 cu31924001803877_0118
+1 praguechapterboo00paid_0069
+1 centurycookbook95rona_0620
+1 newworldsfaircoo00port_0100
+1 cottagecookbook00beet_0195
+1 cu31924003573932_0085
+1 cu31924087257873_0421
+1 cu31924090155767_0310
+1 cu31924003584061_0182
+1 washburncrosbyco00wash_0047
+1 industrialbookl00pickgoog_0132
+1 cu31924003587965_0294
+1 cottagecookbook00beet_0201
+0 p1highschoolphy00mercuoft_0197
+1 clubwomanscookbo00ramb_0073
+1 consolidatedlib02herrgoog_0265
+1 cu31924087257931_0431
+1 candymakingathom00wrig_0152
+1 diseasesofstomac00hemm_0267
+1 cu31924003521345_0073
+1 cu31924085806994_0093
+1 commonsenseinhou00harlrich_0498
+1 practicalamerica00hall_0295
+1 cu31924000677256_0227
+1 cu31924001803877_0110
+1 cu31924003592569_0481
+1 cakecandyculinar00john_0222
+
+#NINETY: 28/30 YES, 2 NO
+YES methodsofcanning00blitiala_0261
+YES cu31924001803877_0167
+NO notesonthermody00spangoog_0067
+YES practicalhousek00clowgoog_0064
+YES mrsowenscookbook00chicrich_0326
+YES newyorkcookbook00martgoog_0113
+YES centurycookbook95rona_0124
+YES purefoodcookbook00maddiala_0263
+YES cu31924086709387_0050
+YES mrswilsonscookb00wilsgoog_0097
+YES methodsofcanning00blitiala_0241
+YES mrslincolnsbosto00linc_0112
+YES captainsladycook00jasm_0165
+YES cu31924001803877_0252
+YES misslesliesladys00lesl_0131
+YES cu31924001803877_0293
+YES consolidatedlib02herrgoog_0030
+YES winstoncookbookp00cram_0365
+YES cassellsdictiona00cass_0391
+NO progressivearit02milngoog_0127
+YES cu31924085803215_0120
+YES cookinginoldcro00conggoog_0093
+YES cu31924000500540_0041
+YES newbookofcookery00farm_0411
+YES mrsrorersphilade00rorerich_0199
+YES commonsenseinho01harlgoog_0489
+YES cu31924003587965_0305
+YES newhouseholddisc00mors_0273
+YES mrsowenscookbook00chicrich_0195
+YES cu31924085803215_0363
+
+#N-FIVE: 30/30 YES
+YES mrsrorersphilade00rorerich_0492
+YES cakecandyculinar00john_0049
+YES mrswilsonscookb00wilsgoog_0162
+YES winstoncookbookp00cram_0474
+YES cu31924087257873_0228
+YES cu31924085806994_0116
+YES cu31924003575960_0102
+YES newhouseholddisc00mors_0418
+YES mrsowenscookbook00chicrich_0086
+YES cu31924086758251_0522
+YES mrsowenscookbook00chicrich_0052
+YES cu31924001345507_0104
+YES cu31924090155767_0548
+YES purefoodcookbook00maddiala_0218
+YES mrsrorersphilade00rorerich_0361
+YES practicaldietet05pattgoog_0208
+YES diabeticcookeryr00oppeiala_0114
+YES nationalfoodheal00harr_0064
+YES cu31924003592569_0314
+YES cu31924087257873_0580
+YES cu31924000677256_0054
+YES practicaldietet00pattgoog_0356
+YES cu31924003592569_0313
+YES daintydining00brow_0089
+YES cu31924003573932_0058
+YES cu31924087319681_0109
+YES wartimebreadsan00handgoog_0037
+YES methodsofcanning00blitiala_0428
+YES misscorsonspract00cors_0473
+YES modernpracticalc00broo_0031
+
+#N-SIX: 30/30 YES
+YES marshallladiesch00ladi_0093
+YES purefoodcookbook00maddiala_0196
+YES northendclubcook01nort_0034
+YES cu31924086757774_0449
+YES cu31924086713777_0126
+YES cu31924003573932_0173
+#YES northendclubcook01nort_0074 #trained on, remove
+YES cu31924001742083_0103
+YES cu31924003582735_0200
+YES cu31924087257931_0302
+YES whattohavefordi00farmgoog_0227
+YES cobaltsouvenirco00presuoft_0029
+YES cu31924000528285_0120
+YES cu31924087319681_0046
+YES cu31924001345507_0114
+YES cu31924000677256_0081
+YES capitalcookbook00will_0018
+YES centurycookbook00arnoiala_0257
+YES newbedfordpracti00mend_0034
+YES paulrichardsboo00richgoog_0040
+YES cu31924054985829_0159
+YES praguechapterboo00paid_0031
+YES cu31924003587965_0439
+YES misslesliesladys00lesl_0168
+YES mrsowenscookbook00chicrich_0290
+YES newworldsfaircoo00port_0454
+YES cu31924003587965_0169
+YES atextbookcookin00greegoog_0095
+YES marshallladiesch00ladi_0056
+YES mrsrorersphilade00rorerich_0120
+1 cu31924087257873_0419
+
+#N-SEVEN: 29/30 YES, 1 NON?
+YES cobaltsouvenirco00presuoft_0078
+YES cu31924003575960_0027
+YES capitalcookbook00will_0201
+YES newyorkcookbook00martgoog_0107
+YES centurycookbook00arnoiala_0148
+YES cu31924089588291_0020
+YES mrswilsonscookb00wilsgoog_0076
+YES mrswilsonscookb00wilsgoog_0046
+YES cu31924085803215_0148
+YES cu31924000461495_0020
+YES newenglandcookbo00gool_0030
+YES childsbookofreci00chil_0046
+NON? modernhotwaterhe00donaiala_0205
+YES mrsrorersphilade00rorerich_0468
+YES conversationmenu00bart_0015
+YES cu31924089588291_0046
+YES cu31924003587965_0362
+YES cu31924087257873_0480
+YES newbookofcookery00farm_0381
+YES cu31924087257873_0328
+YES mrsowenscookbook00chicrich_0418
+YES cu31924003586025_0069
+YES cu31924000674501_0070
+YES cu31924003582735_0170
+YES newhouseholddisc00mors_0421
+YES cu31924085803215_0088
+YES completebreadca00unkngoog_0090
+YES mrsputnamsrecei00collgoog_0052
+YES mrsowenscookbook00chicrich_0189
+YES cu31924086758251_0663
+
+#N-EIGHT: 29/30 YES, 1 NO
+YES cu31924000677256_0099
+YES centurycookbook95rona_0120
+YES candymakingathom00wrig_0177
+YES cu31924085803215_0157
+YES practicaldietet07pattgoog_0226
+YES cu31924079987487_0099
+YES newsaladsfordinn01rore_0099
+YES praguechapterboo00paid_0075
+YES deltasbestcookbo00amerrich_0037
+YES cu31924003582735_0261
+YES cu31924086758251_0507
+YES whattohavefordi00farmgoog_0265
+YES cu31924003571365_0200
+YES cu31924085803215_0338
+YES newenglandcookbo00gool_0142
+YES missbeechersdome01beec_0052
+YES cu31924089588291_0057
+YES cu31924003592569_0341
+YES cu31924090155767_0497
+YES cu31924003592569_0318
+YES clubwomanscookbo00ramb_0113
+NO novelloscollect00unkngoog_0092
+YES mrswilsonscookb00wilsgoog_0146
+YES whattohavefordi00farmgoog_0096
+YES cu31924085641656_0178
+YES cu31924003584061_0234
+YES whattohavefordi00farmgoog_0126
+YES winstoncookbookp00cram_0119
+YES cu31924003575960_0098
+YES cu31924003587965_0256
+
+#N-NINE: 30/30 YES
+YES northendclubcook01nort_0147
+YES clubwomanscookbo00ramb_0129
+YES cu31924085803215_0312
+YES cu31924087257873_0521
+YES cu31924087257873_0641
+#YES cookingforprofit00bradrich_0089 #trained on, remove
+YES newenglandcookbo00gool_0094
+YES cu31924003584061_0162
+YES mrsowenscookbook00chicrich_0303
+YES deltasbestcookbo00amerrich_0069
+YES newenglandcookbo00gool_0112
+YES cu31924003584061_0163
+YES newenglandcookbo00gool_0040
+YES commonsenseinhou00harlrich_0200
+YES cu31924086758251_0475
+YES newbookofcookery00farm_0302
+YES northendclubcook01nort_0022
+YES mrswilsonscookb00wilsgoog_0096
+YES cu31924090155767_0471
+YES deltasbestcookbo00amerrich_0084
+YES mrsrorersphilade00rorerich_0146
+YES cu31924001345507_0097
+YES newenglandcookbo00gool_0122
+YES winstoncookbookp00cram_0161
+YES winstoncookbookp00cram_0142
+YES cu31924085803215_0317
+YES winstoncookbookp00cram_0537
+YES practicaldietet07pattgoog_0198
+YES consolidatedlib02herrgoog_0080
+YES mrsrorersphilade00rorerich_0373
+1 winstoncookbookp00cram_0163
+
+#HUNDRED: 30/30 YES
+YES cakecandyculinar00john_0053
+YES cu31924087257873_0312
+YES winstoncookbookp00cram_0133
+YES culturediseases00taub_0114
+YES marshallladiesch00ladi_0047
+YES cu31924003592569_0153
+YES capitalcookbook00will_0210
+#YES northendclubcook01nort_0030 #trained on, remove
+YES cu31924003592569_0108
+YES praguechapterboo00paid_0018
+YES whattohavefordi00farmgoog_0161
+#YES mrswilsonscookb00wilsgoog_0082 #trained on, remove
+YES mortarboardmenus00comp_0049
+YES winstoncookbookp00cram_0286
+YES winstoncookbookp00cram_0336
+YES practicaldietet00pattgoog_0182
+YES cu31924003592569_0260
+YES mrswilsonscookb00wilsgoog_0058
+YES newenglandcookbo00gool_0173
+YES praguechapterboo00paid_0039
+YES practicaldietet07pattgoog_0114
+#YES conversationmenu00bart_0008 #trained on, remove
+YES clubwomanscookbo00ramb_0068
+YES cu31924003592569_0317
+YES newvegetariandi00collgoog_0048
+YES cu31924001742083_0044
+YES cu31924087318436_0180
+YES cu31924087318436_0304
+YES winstoncookbookp00cram_0343
+YES cu31924001742083_0017
+1 mrsowenscookbook00chicrich_0313
+
+1 cu31924087318436_0224
+
+1 practicaldietet05pattgoog_0105

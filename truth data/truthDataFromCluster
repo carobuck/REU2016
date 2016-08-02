@@ -2,6 +2,7 @@
 #NON?= non food recipe (e.g. soap, polish, bricks, chemistry, etc)
 #NO= not a recipe at all
 #there is a python script to convert words to 1 or 0; non? treated as no for model/training
+#****This truth data is from running the first/original classifier!***
 
 YES cu31924001803877_0704
 YES poeticalcookbook00mossiala_0112
